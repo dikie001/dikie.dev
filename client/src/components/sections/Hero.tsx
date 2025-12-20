@@ -9,7 +9,7 @@ const socialLinks = [
     { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
 ];
 
- function App() {
+export function Hero() {
     return (
         <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background Effects */}
@@ -153,5 +153,3 @@ const socialLinks = [
         </section>
     );
 }
-
-export default App
