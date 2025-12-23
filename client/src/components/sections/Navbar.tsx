@@ -55,8 +55,8 @@ export function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                        ? "py-3 glass"
-                        : "py-5 bg-transparent"
+                    ? "py-3 bg-background/80 backdrop-blur-md border-b"
+                    : "py-5 bg-transparent"
                     }`}
             >
                 <div className="container flex items-center justify-between">
@@ -70,8 +70,8 @@ export function Navbar() {
                         className="flex items-center gap-2 text-xl font-bold font-[Playfair_Display]"
                         whileHover={{ scale: 1.02 }}
                     >
-                        <Sparkles className="w-6 h-6 text-[var(--luxury-gold)]" />
-                        <span className="text-gradient-gold">Portfolio</span>
+                        <Sparkles className="w-6 h-6 text-primary" />
+                        <span className="text-primary">Portfolio</span>
                     </motion.a>
 
                     {/* Desktop Navigation */}
@@ -85,8 +85,8 @@ export function Navbar() {
                                     scrollToSection(link.href);
                                 }}
                                 className={`relative px-4 py-2 text-sm font-medium transition-colors ${activeSection === link.href.slice(1)
-                                        ? "text-[var(--luxury-gold)]"
-                                        : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                                    ? "text-primary"
+                                    : "text-muted-foreground hover:text-foreground"
                                     }`}
                                 whileHover={{ y: -2 }}
                             >
@@ -94,7 +94,7 @@ export function Navbar() {
                                 {activeSection === link.href.slice(1) && (
                                     <motion.div
                                         layoutId="activeSection"
-                                        className="absolute inset-x-2 -bottom-px h-0.5 bg-gradient-to-r from-[var(--luxury-gold)] to-[var(--antique-gold)]"
+                                        className="absolute inset-x-2 -bottom-px h-0.5 bg-gradient-to-r from-primary to-primary/80"
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
@@ -136,7 +136,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-x-0 top-[60px] z-40 glass lg:hidden"
+                        className="fixed inset-x-0 top-[60px] z-40 bg-background/95 backdrop-blur-md border-b lg:hidden"
                     >
                         <nav className="container py-6 flex flex-col gap-2">
                             {navLinks.map((link, index) => (
@@ -151,14 +151,14 @@ export function Navbar() {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.05 }}
                                     className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeSection === link.href.slice(1)
-                                            ? "bg-[rgba(212,175,55,0.1)] text-[var(--luxury-gold)]"
-                                            : "text-[var(--foreground-muted)] hover:bg-[var(--background-muted)]"
+                                        ? "bg-primary/10 text-primary"
+                                        : "text-muted-foreground hover:bg-muted"
                                         }`}
                                 >
                                     {link.name}
                                 </motion.a>
                             ))}
-                            <div className="pt-4 mt-2 border-t border-[var(--border)]">
+                            <div className="pt-4 mt-2 border-t">
                                 <Button className="w-full" onClick={() => scrollToSection("#contact")}>
                                     Let's Talk
                                 </Button>
