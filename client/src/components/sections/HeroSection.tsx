@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { socialLinks } from '@/data/social-links';
+import { motion } from 'framer-motion';
 import { ArrowDown, Download } from 'lucide-react';
-import { socialLinks, stats } from '@/data/social-links';
 
 interface HeroProps {
     scrollToSection: (section: string) => void;
@@ -29,9 +29,9 @@ export function HeroSection({ scrollToSection }: HeroProps) {
 
                     {/* Role */}
                     <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                        A passionate <span className="text-foreground font-medium">Full Stack Developer</span> building
-                        modern web applications with React, TypeScript, and Node.js
+                        A results-driven <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
                     </p>
+
 
                     {/* CTA Buttons */}
                     <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -63,7 +63,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                 </motion.div>
 
                 {/* Stats - Simple Row */}
-                <motion.div
+                {/* <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.6 }}
@@ -75,7 +75,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                             <div className="text-xs text-muted-foreground uppercase tracking-wide mt-1">{stat.label}</div>
                         </div>
                     ))}
-                </motion.div>
+                </motion.div> */}
 
                 {/* Scroll Indicator */}
                 <motion.div
