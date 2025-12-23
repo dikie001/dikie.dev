@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navLinks = [
     { name: "Home", href: "#home" },
@@ -103,7 +104,8 @@ export function Navbar() {
                     </nav>
 
                     {/* Desktop CTA */}
-                    <div className="hidden lg:flex items-center gap-4">
+                    <div className="hidden lg:flex items-center gap-2">
+                        <ThemeToggle />
                         <Button
                             size="sm"
                             onClick={() => scrollToSection("#contact")}
