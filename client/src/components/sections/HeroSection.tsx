@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Download } from 'lucide-react';
 import { socialLinks, stats } from '@/data/social-links';
 
 interface HeroProps {
@@ -15,7 +15,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="space-y-6"
+                    className="space-y-4"
                 >
                     {/* Greeting */}
                     <p className="text-primary font-medium tracking-wide">
@@ -24,7 +24,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
 
                     {/* Name */}
                     <h1 className="text-5xl sm:text-7xl font-bold tracking-tight">
-                        Dikie
+                        <span className='text-primary'>DICKENS</span> OMONDI
                     </h1>
 
                     {/* Role */}
@@ -38,8 +38,11 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                         <Button size="lg" onClick={() => scrollToSection('Projects')}>
                             View My Work
                         </Button>
-                        <Button size="lg" variant="outline" onClick={() => scrollToSection('Contact')}>
-                            Get In Touch
+                        <Button variant="outline" size="lg" asChild>
+                            <a href="/resume.pdf" download>
+                                <Download className="w-4 h-4" />
+                                Download CV
+                            </a>
                         </Button>
                     </div>
 
@@ -64,7 +67,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.6 }}
-                    className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-16 border-t border-border/30"
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8 border-t border-border/30"
                 >
                     {stats.map((stat, i) => (
                         <div key={i} className="text-center">
@@ -79,7 +82,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="pt-12"
+                    className="pt-6"
                 >
                     <button
                         onClick={() => scrollToSection('About')}

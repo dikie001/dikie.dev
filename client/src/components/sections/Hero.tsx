@@ -3,10 +3,10 @@ import { ArrowDown, Download, Github, Linkedin, Twitter, Mail } from "lucide-rea
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
+    { icon: Github, href: "https://github.com/dikie001", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+    { icon: Mail, href: "mailto:omondidickens255@gmail.com", label: "Email" },
 ];
 
 export function Hero() {
@@ -42,7 +42,7 @@ export function Hero() {
                 />
             </div>
 
-            <div className="container relative z-10 py-32">
+            <div className="container relative z-10 py-25">
                 <div className="max-w-4xl mx-auto text-center">
                     {/* Pre-title */}
                     <motion.div
