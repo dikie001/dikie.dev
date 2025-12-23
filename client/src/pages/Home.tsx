@@ -7,12 +7,12 @@ import {
   Skills,
   Projects,
   Experience,
-  Testimonials,
   Contact,
   Footer
 } from '@/components/sections';
 
 const Home = () => {
+
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
