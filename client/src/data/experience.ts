@@ -2,28 +2,28 @@ import type { Experience } from '@/types';
 
 export const experience: Experience[] = [
     {
-        role: 'Lead Full Stack Engineer',
-        company: 'Tech Innovations Corp',
-        period: '2022 - Present',
-        description: 'Architected and deployed cloud-native applications serving 2M+ users. Led cross-functional team of 8 engineers. Reduced infrastructure costs by 35% through optimization.',
+        role: 'Student Developer',
+        company: 'Self-Taught / Online Courses',
+        period: '2023 - Present',
+        description: 'Building full-stack web applications while learning modern technologies through online courses and personal projects.',
         achievements: [
-            'Led migration to microservices',
-            'Mentored 5 junior developers',
-            'Improved system uptime to 99.99%',
-            'Reduced deployment time by 60%'
+            'Completed multiple React projects',
+            'Built REST APIs with Express',
+            'Learned PostgreSQL and MongoDB',
+            'Active on GitHub'
         ],
         current: true
     },
     {
-        role: 'Senior Software Engineer',
-        company: 'Digital Solutions Inc',
-        period: '2020 - 2022',
-        description: 'Developed enterprise-grade web applications using modern tech stack. Established coding standards and best practices.',
+        role: 'Freelance Projects',
+        company: 'Various Clients',
+        period: '2024',
+        description: 'Working on small web development projects to gain real-world experience and build portfolio.',
         achievements: [
-            'Reduced page load time by 40%',
-            'Implemented automated testing',
-            'Led security audit initiatives',
-            'Built reusable component library'
+            'Delivered client websites',
+            'Worked with deadlines',
+            'Improved communication skills',
+            'Learned project management'
         ],
         current: false
     }

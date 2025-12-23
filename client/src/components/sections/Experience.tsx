@@ -1,41 +1,68 @@
+import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Award } from 'lucide-react';
 import { experience } from '@/data/experience';
 
 export function Experience() {
     return (
-        <section id="experience" className="container py-24 border-t">
-            <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold">Professional Experience</h2>
-            </div>
-            <div className="max-w-3xl mx-auto space-y-8">
-                {experience.map((exp, i) => (
-                    <div key={i} className="relative pl-8 border-l-2 border-secondary pb-8 last:pb-0">
-                        <div
-                            className={`absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 bg-background ${exp.current ? 'border-primary' : 'border-secondary'
-                                }`}
-                        />
-                        <div className="flex flex-col sm:flex-row justify-between items-start mb-4">
-                            <div>
-                                <h3 className="text-2xl font-bold">{exp.role}</h3>
-                                <p className="text-primary font-medium">{exp.company}</p>
-                            </div>
-                            <Badge variant="outline" className="mt-2 sm:mt-0">
-                                <Calendar className="h-3 w-3 mr-1" />
-                                {exp.period}
-                            </Badge>
-                        </div>
-                        <p className="text-muted-foreground mb-4">{exp.description}</p>
-                        <div className="grid sm:grid-cols-2 gap-2">
-                            {exp.achievements.map((ach, idx) => (
-                                <div key={idx} className="flex items-center gap-2 text-sm">
-                                    <Award className="h-3 w-3 text-primary" />
-                                    {ach}
-                                </div>
-                            ))}
-                        </div>
+        <section id="experience" className="py-24 bg-secondary/10">
+            <div className="container max-w-3xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="space-y-12"
+                >
+                    {/* Section Header */}
+                    <div className="text-center">
+                        <p className="text-primary font-medium mb-2">Journey</p>
+                        <h2 className="text-3xl sm:text-4xl font-bold">
+                            My Experience
+                        </h2>
                     </div>
-                ))}
+
+                    {/* Timeline */}
+                    <div className="space-y-8">
+                        {experience.map((exp, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="relative pl-8 border-l-2 border-primary/30"
+                            >
+                                {/* Timeline Dot */}
+                                <div className={`absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 bg-background ${exp.current ? 'border-primary bg-primary' : 'border-primary/50'
+                                    }`} />
+
+                                {/* Content */}
+                                <div className="space-y-3">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <h3 className="text-xl font-semibold">{exp.role}</h3>
+                                        {exp.current && (
+                                            <Badge variant="default" className="text-xs">Current</Badge>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-wrap items-center gap-2 text-sm">
+                                        <span className="text-primary font-medium">{exp.company}</span>
+                                        <span className="text-muted-foreground">• {exp.period}</span>
+                                    </div>
+
+                                    <p className="text-muted-foreground">{exp.description}</p>
+
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.achievements.map((ach, i) => (
+                                            <Badge key={i} variant="outline" className="text-xs">
+                                                {ach}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

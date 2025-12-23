@@ -1,35 +1,70 @@
+import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
-import { GraduationCap, CheckCircle2 } from 'lucide-react';
 
 export function AboutSection() {
-    const highlights = ['Cloud Architecture', 'Performance Optimization', 'CI/CD & DevOps', 'Team Leadership'];
+    const techStack = [
+        'React', 'TypeScript', 'Tailwind CSS', 'Node.js',
+        'Express', 'PostgreSQL', 'Prisma', 'MongoDB', 'Mongoose'
+    ];
 
     return (
-        <section id="about" className="container py-24 border-t">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
-                    <Badge>About Me</Badge>
-                    <h2 className="text-4xl font-bold">Building the Future of Web</h2>
-                    <p className="text-muted-foreground text-lg">
-                        With over 6 years of experience, I specialize in transforming complex business requirements into elegant, scalable solutions.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {highlights.map((item) => (
-                            <div key={item} className="flex items-center gap-2">
-                                <CheckCircle2 className="h-4 w-4 text-primary" />
-                                <span>{item}</span>
-                            </div>
-                        ))}
+        <section id="about" className="py-24">
+            <div className="container max-w-4xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="space-y-8"
+                >
+                    {/* Section Header */}
+                    <div>
+                        <p className="text-primary font-medium mb-2">About Me</p>
+                        <h2 className="text-3xl sm:text-4xl font-bold">
+                            Student Developer with a Passion for Building
+                        </h2>
                     </div>
-                </div>
-                <Card className="bg-primary text-primary-foreground p-8">
-                    <GraduationCap className="h-12 w-12 mb-4" />
-                    <h3 className="text-2xl font-bold mb-2">Professional Journey</h3>
-                    <p className="opacity-90">
-                        Led teams building applications serving millions. Expertise spans frontend excellence to backend architecture.
-                    </p>
-                </Card>
+
+                    {/* Bio */}
+                    <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                        <p>
+                            I'm a student developer focused on creating clean, functional web applications.
+                            I love turning ideas into reality through code and I'm always learning new technologies.
+                        </p>
+                        <p>
+                            My journey in web development started with curiosity about how websites work,
+                            and it has grown into a genuine passion for building full-stack applications
+                            that solve real problems.
+                        </p>
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-semibold">Technologies I work with:</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {techStack.map((tech) => (
+                                <Badge
+                                    key={tech}
+                                    variant="secondary"
+                                    className="px-3 py-1.5 text-sm"
+                                >
+                                    {tech}
+                                </Badge>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Quick Facts */}
+                    <div className="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div className="p-4 rounded-lg bg-secondary/30">
+                            <p className="font-medium text-primary">Currently Learning</p>
+                            <p className="text-muted-foreground">Advanced React patterns, System Design</p>
+                        </div>
+                        <div className="p-4 rounded-lg bg-secondary/30">
+                            <p className="font-medium text-primary">Open To</p>
+                            <p className="text-muted-foreground">Internships, Junior roles, Collaborations</p>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
