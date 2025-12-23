@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+import { ThemeToggle } from '@/components/ui/theme-toggle';
+
 interface NavbarProps {
     activeSection: string;
     isMenuOpen: boolean;
@@ -22,7 +24,7 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                     <Terminal className="h-6 w-6 text-primary" />
                     <span>DIKIE.DEV</span>
                 </div>
-                <div className="hidden md:flex gap-1">
+                <div className="hidden md:flex items-center gap-1">
                     {navigation.map((item) => (
                         <Button
                             key={item}
@@ -34,15 +36,20 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                             {item}
                         </Button>
                     ))}
+                    <div className="ml-2">
+                        <ThemeToggle />
+                    </div>
                 </div>
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="md:hidden"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                    {isMenuOpen ? <X /> : <Menu />}
-                </Button>
+                <div className="flex items-center gap-2 md:hidden">
+                    <ThemeToggle />
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? <X /> : <Menu />}
+                    </Button>
+                </div>
             </div>
             <AnimatePresence>
                 {isMenuOpen && (
