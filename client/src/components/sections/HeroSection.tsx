@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { socialLinks, stats } from '@/data/social-links';
 
 interface HeroProps {
