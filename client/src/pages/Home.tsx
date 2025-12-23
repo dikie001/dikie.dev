@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/10 relative">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8 bg-background text-foreground selection:bg-primary/10 relative">
       {/* Interactive Background Gradient */}
       <div
         className="pointer-events-none fixed inset-0 z-30 transition duration-300 opacity-20"

@@ -2,14 +2,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
+type activeSectionType = 'Home' | 'About' | 'Projects' | 'Skills' | 'Experience' |  'Contact';
+
 interface NavbarProps {
-    activeSection: string;
+    activeSection: activeSectionType;
     isMenuOpen: boolean;
     setIsMenuOpen: (open: boolean) => void;
-    scrollToSection: (section: string) => void;
+    scrollToSection: (section: activeSectionType) => void;
 }
 
-const navigation = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Testimonials', 'Contact'];
+const navigation:activeSectionType[] = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'];
 
 export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSection }: NavbarProps) {
     return (
@@ -46,9 +48,9 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                                     onClick={() => scrollToSection(item)}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors rounded-full ${isActive
+                                    className={`relative px-3.5 py-2 text-sm cursor-pointer font-medium transition-all rounded-full ${isActive
                                             ? 'text-primary'
-                                            : 'text-muted-foreground hover:text-foreground'
+                                            : 'text-muted-foreground hover:text-primary'
                                         }`}
                                 >
                                     {isActive && (
