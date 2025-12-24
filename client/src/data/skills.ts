@@ -3,18 +3,18 @@ import type { SkillCategory } from '@/types';
 export const skills: SkillCategory = {
     'Frontend': {
         items: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'HTML/CSS'],
-        level: 90
+        level: 99
     },
     'Backend': {
         items: ['Node.js', 'Express', 'REST APIs'],
-        level: 85
+        level: 98
     },
     'Databases': {
         items: ['PostgreSQL', 'Prisma', 'MongoDB', 'Mongoose'],
-        level: 80
+        level: 97
     },
     'Tools': {
-        items: ['Git', 'VS Code', 'Postman', 'Figma'],
-        level: 85
+        items: ['Git', 'VS Code', "Thunder Client", "Figma"],
+        level: 100
     }
 };

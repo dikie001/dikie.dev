@@ -19,7 +19,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                 >
                     {/* Greeting */}
                     <p className="text-primary font-medium tracking-wide">
-                        Hey there, I'm
+                        Hello there, I'm
                     </p>
 
                     {/* Name */}
@@ -39,7 +39,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                             View My Work
                         </Button>
                         <Button variant="outline" size="lg" asChild>
-                            <a href="/resume.pdf" download>
+                            <a href="/DICKENS OMONDI RESUME.pdf" download>
                                 <Download className="w-4 h-4" />
                                 Download CV
                             </a>

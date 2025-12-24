@@ -5,7 +5,7 @@ import type { SocialLink, Stat } from '@/types';
 export const socialLinks: SocialLink[] = [
     { icon: Github, href: 'https://github.com/dikie001', label: 'GitHub' },
     { icon: Linkedin, href: 'https://linkedin.com/in/dikie', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:dikie@example.com', label: 'Email' }
+    { icon: Mail, href: 'mailto:omondidickens255@gmail.com', label: 'Email' }
 ];
 
 export const stats: Stat[] = [

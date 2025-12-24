@@ -55,13 +55,13 @@ export function Projects() {
                                         </div>
 
                                         {/* Tech Stack */}
-                                        <div className="flex flex-wrap gap-1.5">
+                                        {/* <div className="flex flex-wrap gap-1.5">
                                             {project.tech.map((tech) => (
                                                 <Badge key={tech} variant="secondary" className="text-xs">
                                                     {tech}
                                                 </Badge>
                                             ))}
-                                        </div>
+                                        </div> */}
 
                                         {/* Links */}
                                         <div className="flex gap-2 pt-2">

@@ -3,8 +3,8 @@
 export interface Project {
     title: string;
     description: string;
-    tech: string[];
-    metrics: Record<string, string>;
+    // tech: string[];
+    // metrics: Record<string, string>;
     link: string;
     icon: React.ComponentType<{ className?: string }>;
     featured: boolean;
