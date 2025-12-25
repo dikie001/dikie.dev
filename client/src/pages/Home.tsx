@@ -25,9 +25,9 @@ const Home = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const scrollToSection = (section: string) => {
+  const scrollToSection = (section: activeSectionType) => {
     const id = section.toLowerCase();
-    setActiveSection(id);
+    setActiveSection(section);
     setIsMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
