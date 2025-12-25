@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
-type activeSectionType = 'Home' | 'About' | 'Projects' | 'Skills' | 'Experience' |  'Contact';
+export type activeSectionType = 'Home' | 'About' | 'Projects' | 'Skills' | 'Experience' | 'Contact';
 
 interface NavbarProps {
     activeSection: activeSectionType;
@@ -11,7 +11,7 @@ interface NavbarProps {
     scrollToSection: (section: activeSectionType) => void;
 }
 
-const navigation:activeSectionType[] = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'];
+const navigation: activeSectionType[] = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'];
 
 export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSection }: NavbarProps) {
     return (
@@ -49,8 +49,8 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className={`relative px-3.5 py-2 text-sm cursor-pointer font-medium transition-all rounded-full ${isActive
-                                            ? 'text-primary'
-                                            : 'text-muted-foreground hover:text-primary'
+                                        ? 'text-primary'
+                                        : 'text-muted-foreground hover:text-primary'
                                         }`}
                                 >
                                     {isActive && (
@@ -105,8 +105,8 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                                             transition={{ delay: index * 0.05 }}
                                             onClick={() => scrollToSection(item)}
                                             className={`flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium transition-all ${isActive
-                                                    ? 'bg-primary/10 text-primary border border-primary/20'
-                                                    : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                                                ? 'bg-primary/10 text-primary border border-primary/20'
+                                                : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                                                 }`}
                                         >
                                             <span className={`h-1.5 w-1.5 rounded-full ${isActive ? 'bg-primary' : 'bg-muted-foreground/50'}`} />

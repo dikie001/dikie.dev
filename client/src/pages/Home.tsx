@@ -54,7 +54,7 @@ const Home = () => {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         scrollToSection={scrollToSection}
-      /
+      />
 
       {/* Sections */}
       <HeroSection scrollToSection={scrollToSection} />
