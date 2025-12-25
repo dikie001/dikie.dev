@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Navbar } from '@/components/layout';
+import { Navbar, type activeSectionType } from '@/components/layout';
 import {
   HeroSection,
   AboutSection,
@@ -13,7 +13,7 @@ import {
 
 const Home = () => {
 
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState<activeSectionType>('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
@@ -54,7 +54,7 @@ const Home = () => {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         scrollToSection={scrollToSection}
-      />
+      /
 
       {/* Sections */}
       <HeroSection scrollToSection={scrollToSection} />
