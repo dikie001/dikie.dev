@@ -10,7 +10,7 @@ export function Footer() {
                     {/* Brand */}
                     <div className="text-center sm:text-left">
                         <p className="font-semibold">
-                            <span className="text-primary">DIKIE</span>.DEV
+                            <span className="text-primary">DICKENS</span> OMONDI
                         </p>
                         <p className="text-sm text-muted-foreground">
                             © {currentYear} • dikie.dev
