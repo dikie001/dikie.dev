@@ -13,7 +13,7 @@ export function Footer() {
                             <span className="text-primary">DICKENS</span> OMONDI
                         </p>
                         <p className="text-sm text-muted-foreground">
-                            © {currentYear} • dikie.dev
+                            © {currentYear} • dikie.dev • All rights reserved.
                         </p>
                     </div>
 
