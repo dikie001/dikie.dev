@@ -13,7 +13,7 @@ export function Footer() {
                             <span className="text-primary">DIKIE</span>.DEV
                         </p>
                         <p className="text-sm text-muted-foreground">
-                            © {currentYear} • Built with React & Tailwind
+                            © {currentYear} • dikie.dev
                         </p>
                     </div>
 
@@ -36,7 +36,7 @@ export function Footer() {
                             <Linkedin className="h-5 w-5" />
                         </a>
                         <a
-                            href="mailto:dikie@example.com"
+                            href="mailto:omondidickens255@gmail.com"
                             className="text-muted-foreground hover:text-primary transition-colors"
                         >
                             <Mail className="h-5 w-5" />
