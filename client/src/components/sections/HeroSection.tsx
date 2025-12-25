@@ -2,9 +2,10 @@ import { Button } from '@/components/ui/button';
 import { socialLinks } from '@/data/social-links';
 import { motion } from 'framer-motion';
 import { ArrowDown, Download } from 'lucide-react';
+import { type activeSectionType } from '@/components/layout';
 
 interface HeroProps {
-    scrollToSection: (section: string) => void;
+    scrollToSection: (section: activeSectionType) => void;
 }
 
 export function HeroSection({ scrollToSection }: HeroProps) {
