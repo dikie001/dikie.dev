@@ -3,15 +3,6 @@ import type { Project } from '@/types';
 
 export const projects: Project[] = [
     {
-        title: '',
-        description: 'Full-stack online store with product catalog, cart, checkout, and order management. Features user authentication and admin dashboard.',
-        // tech: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Prisma'],
-        // metrics: { pages: '15+', features: 'Auth', type: 'Full Stack' },
-        link: '#',
-        icon: ShoppingCart,
-        featured: true
-    },
-    {
         title: 'BITSA',
         description: 'Enterprise grade IT club management management system with blogs, events, user profiles etc.',
         // tech: ['React', 'Node.js', 'MongoDB', 'Mongoose', 'Socket.io'],
@@ -20,6 +11,16 @@ export const projects: Project[] = [
         icon: MessageCircle,
         featured: true
     },
+    {
+        title: 'Brillia',
+        description:'A fun app with quizes, facts, stories, quick challanges',
+        // tech: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Prisma'],
+        // metrics: { pages: '15+', features: 'Auth', type: 'Full Stack' },
+        link: '#',
+        icon: ShoppingCart,
+        featured: true
+    },
+
     {
         title: 'Portfolio Website',
         description: 'Modern responsive portfolio showcasing projects and skills with dark/light theme toggle.',
