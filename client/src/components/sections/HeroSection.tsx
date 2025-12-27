@@ -128,8 +128,8 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     <motion.div
                         key={index}
                         className={`absolute ${shape.type === 'circle'
-                                ? 'bg-primary/5'
-                                : 'border border-primary/10 bg-transparent'
+                            ? 'bg-primary/5'
+                            : 'border border-primary/10 bg-transparent'
                             } rounded-full`}
                         style={{
                             left: shape.x,
@@ -175,7 +175,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                 />
             </div>
 
-            <div className="container max-w-4xl text-center space-y-8 py-20 relative z-10">
+            <div className="container max-w-4xl mx-auto text-center space-y-8 py-20 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
