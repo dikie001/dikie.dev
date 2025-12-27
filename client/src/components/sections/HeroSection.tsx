@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { socialLinks } from '@/data/social-links';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Terminal, Code2 } from 'lucide-react';
+import { ArrowDown, Download } from 'lucide-react';
 import { type activeSectionType } from '@/components/layout';
 import { useMemo } from 'react';
 
@@ -9,32 +9,34 @@ interface HeroProps {
     scrollToSection: (section: activeSectionType) => void;
 }
 
-// Code snippets for floating animation - adjusted for mobile visibility
+// Code snippets for floating animation
 const codeSnippets = [
     { text: '<div>', x: '5%', y: '12%', delay: 0 },
-    { text: 'const', x: '85%', y: '18%', delay: 1 },
-    { text: '{ }', x: '8%', y: '78%', delay: 0.5 },
-    { text: '=>', x: '90%', y: '72%', delay: 1.5 },
-    { text: '</>', x: '3%', y: '45%', delay: 2 },
-    { text: 'npm', x: '92%', y: '45%', delay: 0.8 },
-    { text: 'git', x: '88%', y: '85%', delay: 1.2 },
-    { text: 'async', x: '6%', y: '88%', delay: 2.5 },
-    { text: '( )', x: '4%', y: '28%', delay: 1.8 },
-    { text: '.tsx', x: '93%', y: '30%', delay: 0.3 },
-    { text: 'fn', x: '10%', y: '60%', delay: 2.2 },
-    { text: 'let', x: '88%', y: '58%', delay: 1.1 },
+    { text: 'const', x: '88%', y: '15%', delay: 1 },
+    { text: '{ }', x: '8%', y: '80%', delay: 0.5 },
+    { text: '=>', x: '92%', y: '75%', delay: 1.5 },
+    { text: '</>', x: '3%', y: '50%', delay: 2 },
+    { text: 'npm', x: '94%', y: '50%', delay: 0.8 },
+    { text: 'git', x: '90%', y: '88%', delay: 1.2 },
+    { text: 'async', x: '6%', y: '90%', delay: 2.5 },
+    { text: '( )', x: '4%', y: '30%', delay: 1.8 },
+    { text: '.tsx', x: '95%', y: '28%', delay: 0.3 },
+    { text: 'fn', x: '7%', y: '65%', delay: 2.2 },
+    { text: 'let', x: '91%', y: '62%', delay: 1.1 },
 ];
 
 // Terminal commands
 const terminalLines = [
-    { text: 'npm install', delay: 0.5 },
-    { text: 'npm run dev', delay: 1.5 },
-    { text: '✓ Ready on localhost:3000', delay: 2.5 },
+    { text: 'git commit -m "feat: add hero"', delay: 0.5 },
+    { text: 'pnpm build', delay: 1.4 },
+    { text: 'pnpm run dev', delay: 1.8 },
+    { text: 'building...', delay: 2.5 },
+    { text: '✓ Ready', delay: 3.5 },
 ];
 
 export function HeroSection({ scrollToSection }: HeroProps) {
     const binaryDots = useMemo(() =>
-        Array.from({ length: 30 }, (_, i) => ({
+        Array.from({ length: 25 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
@@ -45,7 +47,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
     );
 
     return (
-        <section id="home" className="min-h-screen px-4 md:px-6 lg:px-8 flex items-center justify-center pt-20 relative overflow-hidden">
+        <section id="home" className="min-h-screen px-4 md:px-6 lg:px-8 flex items-center justify-center pt-14 md:pt-20 relative overflow-hidden">
             {/* === DEVELOPER-THEMED BACKGROUND === */}
             <div className="absolute inset-0 z-0 pointer-events-none select-none">
 
@@ -53,41 +55,41 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                 <motion.div
                     animate={{
                         scale: [1, 1.2, 1],
-                        opacity: [0.15, 0.25, 0.15],
+                        opacity: [0.1, 0.2, 0.1],
                     }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-0 -left-32 w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-primary rounded-full blur-[100px]"
+                    className="absolute top-0 -left-32 w-[400px] h-[400px] bg-primary rounded-full blur-[100px]"
                 />
                 <motion.div
                     animate={{
                         scale: [1.1, 0.9, 1.1],
-                        opacity: [0.1, 0.2, 0.1],
+                        opacity: [0.08, 0.15, 0.08],
                     }}
                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute -bottom-20 -right-32 w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-primary/70 rounded-full blur-[100px]"
+                    className="absolute -bottom-20 -right-32 w-[400px] h-[400px] bg-primary/70 rounded-full blur-[100px]"
                 />
 
                 {/* Code Grid Pattern */}
                 <div
-                    className="absolute inset-0 opacity-[0.04]"
+                    className="absolute inset-0 opacity-[0.03]"
                     style={{
                         backgroundImage: `
                             linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
                             linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
                         `,
-                        backgroundSize: '40px 40px',
+                        backgroundSize: '50px 50px',
                     }}
                 />
 
-                {/* Floating Code Snippets - Visible on all screens */}
+                {/* Floating Code Snippets */}
                 {codeSnippets.map((snippet, index) => (
                     <motion.div
                         key={index}
-                        className="absolute font-mono text-xs sm:text-sm text-primary/30 font-semibold"
+                        className="absolute font-mono text-[10px] sm:text-xs text-primary/20 font-medium"
                         style={{ left: snippet.x, top: snippet.y }}
                         animate={{
-                            y: [0, -10, 0],
-                            opacity: [0.2, 0.45, 0.2],
+                            y: [0, -8, 0],
+                            opacity: [0.15, 0.3, 0.15],
                         }}
                         transition={{
                             duration: 5,
@@ -100,15 +102,15 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     </motion.div>
                 ))}
 
-                {/* Binary Dots - Visible on all screens */}
+                {/* Binary Dots */}
                 {binaryDots.map((dot) => (
                     <motion.div
                         key={dot.id}
-                        className="absolute font-mono text-[10px] sm:text-xs text-primary/20 font-medium"
+                        className="absolute font-mono text-[8px] sm:text-[10px] text-primary/15"
                         style={{ left: `${dot.x}%`, top: `${dot.y}%` }}
                         animate={{
-                            y: [0, -20, 0],
-                            opacity: [0.15, 0.4, 0.15],
+                            y: [0, -15, 0],
+                            opacity: [0.1, 0.25, 0.1],
                         }}
                         transition={{
                             duration: dot.duration,
@@ -121,123 +123,71 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     </motion.div>
                 ))}
 
-                {/* Mini Terminal Badge - Mobile */}
+                {/* Terminal Window - Positioned at bottom-left on all screens */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="absolute top-24 left-4 md:hidden"
-                >
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-                        <Terminal className="h-3 w-3 text-primary" />
-                        <motion.span
-                            className="font-mono text-[10px] text-primary/70"
-                            animate={{ opacity: [0.5, 1, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        >
-                            npm run dev
-                        </motion.span>
-                    </div>
-                </motion.div>
-
-                {/* Mini Code Badge - Mobile */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1 }}
-                    className="absolute top-24 right-4 md:hidden"
-                >
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-                        <Code2 className="h-3 w-3 text-primary" />
-                        <span className="font-mono text-[10px] text-primary/70">React.tsx</span>
-                    </div>
-                </motion.div>
-
-                {/* Terminal Window - Desktop/Tablet */}
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="absolute left-4 lg:left-[5%] top-[18%] hidden md:block"
+                    className="absolute bottom-4 sm:bottom-28 left-4 sm:left-6 lg:left-[5%] lg:top-[20%] lg:bottom-auto"
                 >
-                    <div className="w-52 lg:w-64 rounded-lg border border-primary/15 bg-background/60 backdrop-blur-sm overflow-hidden shadow-xl shadow-primary/5">
+                    <div className="w-44 sm:w-52 lg:w-64 rounded-lg border border-primary/10 bg-background/40 backdrop-blur-sm overflow-hidden opacity-60 lg:opacity-80">
                         {/* Terminal Header */}
-                        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-primary/10 bg-primary/5">
-                            <div className="w-2 h-2 rounded-full bg-red-500/60" />
-                            <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-                            <div className="w-2 h-2 rounded-full bg-green-500/60" />
-                            <span className="ml-2 text-[9px] text-muted-foreground font-mono">terminal</span>
+                        <div className="flex items-center gap-1 px-2 sm:px-3 py-1.5 border-b border-primary/10 bg-primary/5">
+                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500/50" />
+                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-500/50" />
+                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500/50" />
+                            <span className="ml-1.5 text-[8px] sm:text-[9px] text-muted-foreground font-mono">terminal</span>
                         </div>
                         {/* Terminal Content */}
-                        <div className="p-3 space-y-1">
+                        <div className="p-2 sm:p-3 space-y-0.5 sm:space-y-1">
                             {terminalLines.map((line, idx) => (
                                 <motion.div
                                     key={idx}
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: line.delay, duration: 0.4 }}
-                                    className="font-mono text-[10px] lg:text-[11px] text-muted-foreground"
+                                    className="font-mono text-[9px] sm:text-[10px] lg:text-[11px] text-muted-foreground/80"
                                 >
-                                    <span className="text-green-500">$</span> {line.text}
+                                    <span className="text-green-500/70">$</span> {line.text}
                                 </motion.div>
                             ))}
                             <motion.span
                                 animate={{ opacity: [0, 1, 0] }}
                                 transition={{ duration: 0.8, repeat: Infinity }}
-                                className="inline-block w-1.5 h-3 bg-primary/50 ml-2"
+                                className="inline-block w-1 h-2.5 bg-primary/40 ml-2"
                             />
                         </div>
                     </div>
                 </motion.div>
 
-                {/* Code Editor Window - Desktop/Tablet */}
+                {/* Code Editor Window - Desktop only, right side */}
                 <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
-                    className="absolute right-4 lg:right-[5%] top-[22%] hidden md:block"
+                    className="absolute right-[2%] xl:right-[3%] 2xl:right-[5%] top-[42%] hidden lg:block"
                 >
-                    <div className="w-56 lg:w-72 rounded-lg border border-primary/15 bg-background/60 backdrop-blur-sm overflow-hidden shadow-xl shadow-primary/5">
+                    <div className="w-72 rounded-lg border border-primary/10 bg-background/40 backdrop-blur-sm overflow-hidden opacity-80">
                         {/* Editor Header */}
-                        <div className="flex items-center justify-between px-3 py-2 border-b border-primary/10 bg-primary/5">
+                        <div className="flex items-center justify-between px-3 py-1.5 border-b border-primary/10 bg-primary/5">
                             <div className="flex items-center gap-1.5">
-                                <div className="w-2 h-2 rounded-full bg-red-500/60" />
-                                <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-                                <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                                <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                                <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                                <div className="w-2 h-2 rounded-full bg-green-500/50" />
                             </div>
                             <span className="text-[9px] text-muted-foreground font-mono">Hero.tsx</span>
                         </div>
                         {/* Editor Content */}
-                        <div className="p-3 font-mono text-[10px] lg:text-[11px] space-y-0.5">
-                            <div className="text-muted-foreground/50">1</div>
-                            <div><span className="text-purple-400">export</span> <span className="text-blue-400">function</span> <span className="text-yellow-400">Hero</span>() {'{'}</div>
-                            <div className="pl-3"><span className="text-purple-400">return</span> (</div>
-                            <div className="pl-6 text-primary/70">&lt;section&gt;</div>
-                            <div className="pl-9 text-muted-foreground">// Your content</div>
-                            <div className="pl-6 text-primary/70">&lt;/section&gt;</div>
+                        <div className="p-3 font-mono text-[11px] space-y-0.5 text-muted-foreground/70">
+                            <div><span className="text-purple-400/70">export</span> <span className="text-blue-400/70">function</span> <span className="text-yellow-400/70">Hero</span>() {'{'}</div>
+                            <div className="pl-3"><span className="text-purple-400/70">return</span> (</div>
+                            <div className="pl-6 text-primary/50">&lt;section&gt;</div>
+                            <div className="pl-9 text-muted-foreground/50">dikie.dev</div>
+                            <div className="pl-6 text-primary/50">&lt;/section&gt;</div>
                             <div className="pl-3">)</div>
                             <div>{'}'}</div>
                         </div>
                     </div>
-                </motion.div>
-
-                {/* Animated Code Lines - Bottom decoration */}
-                <motion.div
-                    className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2, duration: 0.6 }}
-                >
-                    {['<', '/', 'code', '>'].map((char, idx) => (
-                        <motion.span
-                            key={idx}
-                            className="font-mono text-lg sm:text-xl text-primary/15 font-light"
-                            animate={{ opacity: [0.1, 0.3, 0.1] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: idx * 0.2 }}
-                        >
-                            {char}
-                        </motion.span>
-                    ))}
                 </motion.div>
 
                 {/* Corner Tags */}
@@ -245,7 +195,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="absolute top-20 left-4 sm:left-8 font-mono text-primary/15 text-xs sm:text-sm"
+                    className="absolute top-20 left-4 font-mono text-primary/10 text-[10px] sm:text-xs"
                 >
                     {'<body>'}
                 </motion.div>
@@ -253,7 +203,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="absolute bottom-28 sm:bottom-20 right-4 sm:right-8 font-mono text-primary/15 text-xs sm:text-sm"
+                    className="absolute bottom-20 right-4 font-mono text-primary/10 text-[10px] sm:text-xs"
                 >
                     {'</body>'}
                 </motion.div>
@@ -275,48 +225,27 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     transition={{ duration: 0.6 }}
                     className="space-y-4"
                 >
-                    {/* Greeting with terminal style */}
-                    <motion.p
-                        className="text-primary font-medium tracking-wide font-mono text-sm sm:text-base"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                    >
-                        <span className="text-muted-foreground">{'>'}</span> Hello, I'm
-                    </motion.p>
+                    {/* Greeting */}
+                    <p className="text-primary font-medium tracking-wide">
+                        Hello there, I'm
+                    </p>
 
                     {/* Name */}
                     <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
                         <span className='text-primary'>DICKENS</span> OMONDI
                     </h1>
 
-                    {/* Role with code styling */}
-                    <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto px-4">
+                    {/* Role */}
+                    <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
                         A results-driven <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
                     </p>
 
-                    {/* Status Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className="flex justify-center"
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                            </span>
-                            <span className="text-sm text-green-600 dark:text-green-400 font-medium">Available for work</span>
-                        </div>
-                    </motion.div>
-
                     {/* CTA Buttons */}
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-4">
-                        <Button size="lg" onClick={() => scrollToSection('Projects')} className="text-sm sm:text-base">
+                        <Button size="lg" onClick={() => scrollToSection('Projects')}>
                             View My Work
                         </Button>
-                        <Button variant="outline" size="lg" asChild className="text-sm sm:text-base">
+                        <Button variant="outline" size="lg" asChild>
                             <a href="/DICKENS OMONDI RESUME.pdf" download>
                                 <Download className="w-4 h-4" />
                                 Download CV
@@ -327,16 +256,15 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     {/* Social Links */}
                     <div className="flex justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
                         {socialLinks.map((link) => (
-                            <motion.a
+                            <a
                                 key={link.label}
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2.5 sm:p-3 rounded-full border border-border/50 hover:border-primary hover:text-primary transition-all hover:scale-110"
-                                whileHover={{ y: -2 }}
+                                className="p-2.5 sm:p-3 rounded-full border border-border/50 hover:border-primary hover:text-primary transition-colors"
                             >
                                 <link.icon className="h-4 w-4 sm:h-5 sm:w-5" />
-                            </motion.a>
+                            </a>
                         ))}
                     </div>
                 </motion.div>
@@ -345,12 +273,12 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
+                    transition={{ delay: 0.8 }}
                     className="pt-4 sm:pt-6"
                 >
                     <button
                         onClick={() => scrollToSection('About')}
-                        className="animate-bounce text-muted-foreground hover:text-primary transition-colors"
+                        className="animate-bounce  text-muted-foreground hover:text-primary transition-colors"
                     >
                         <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6" />
                     </button>
