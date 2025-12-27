@@ -16,7 +16,7 @@ export const projects: Project[] = [
         description:'A fun app with quizes, facts, stories, quick challanges',
         // tech: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Prisma'],
         // metrics: { pages: '15+', features: 'Auth', type: 'Full Stack' },
-        link: '#',
+        link: 'https://brillia-six.vercel.app',
         icon: ShoppingCart,
         featured: true
     },
