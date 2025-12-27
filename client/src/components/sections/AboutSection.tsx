@@ -17,7 +17,7 @@ export function AboutSection() {
         : techStack.slice(0, DEFAULT_VISIBLE);
 
     return (
-        <section id="about" className="py-24">
+        <section id="about" className="px-4 md:px-6 lg:px-8 py-24">
             <div className="container max-w-4xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

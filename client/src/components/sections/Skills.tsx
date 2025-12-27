@@ -4,7 +4,7 @@ import { skills } from '@/data/skills';
 
 export function Skills() {
     return (
-        <section id="skills" className="py-24 bg-secondary/10 relative overflow-hidden">
+        <section id="skills" className="py-24 px-4 md:px-6 lg:px-8 bg-secondary/10 relative overflow-hidden">
             {/* Background Animations */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {/* Subtle floating orb */}

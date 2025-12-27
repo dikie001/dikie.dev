@@ -34,7 +34,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
     const particles = useMemo(() => generateParticles(30), []);
 
     return (
-        <section id="home" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <section id="home" className="min-h-screen px-4 md:px-6 lg:px-8 flex items-center justify-center pt-20 relative overflow-hidden">
             {/* === BACKGROUND ANIMATIONS === */}
             <div className="absolute inset-0 z-0 pointer-events-none">
 
