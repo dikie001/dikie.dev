@@ -4,8 +4,34 @@ import { skills } from '@/data/skills';
 
 export function Skills() {
     return (
-        <section id="skills" className="py-24 bg-secondary/10">
-            <div className="container max-w-4xl">
+        <section id="skills" className="py-24 bg-secondary/10 relative overflow-hidden">
+            {/* Background Animations */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Subtle floating orb */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.05, 0.12, 0.05],
+                        x: [0, 20, 0],
+                    }}
+                    transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-primary rounded-full blur-[130px]"
+                />
+
+                {/* Subtle grid pattern */}
+                <div
+                    className="absolute inset-0 opacity-[0.02]"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+                            linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '60px 60px',
+                    }}
+                />
+            </div>
+
+            <div className="container max-w-4xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

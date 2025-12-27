@@ -11,8 +11,43 @@ export function Contact() {
     };
 
     return (
-        <section id="contact" className="py-24">
-            <div className="container max-w-4xl">
+        <section id="contact" className="py-24 relative overflow-hidden">
+            {/* Background Animations */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Subtle floating orbs */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.08, 0.16, 0.08],
+                    }}
+                    transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -bottom-20 -left-20 w-[450px] h-[450px] bg-primary rounded-full blur-[140px]"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.1, 0.9, 1.1],
+                        opacity: [0.06, 0.14, 0.06],
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute top-10 -right-20 w-[350px] h-[350px] bg-primary/60 rounded-full blur-[120px]"
+                />
+
+                {/* Decorative corner elements */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="absolute top-10 right-10 w-20 h-20 border-r-2 border-t-2 border-primary/15 rounded-tr-lg"
+                />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="absolute bottom-10 left-10 w-20 h-20 border-l-2 border-b-2 border-primary/15 rounded-bl-lg"
+                />
+            </div>
+
+            <div className="container max-w-4xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -10,8 +10,35 @@ export function Projects() {
     const otherProjects = projects.filter(p => !p.featured);
 
     return (
-        <section id="projects" className="py-24">
-            <div className="container max-w-5xl">
+        <section id="projects" className="py-24 relative overflow-hidden">
+            {/* Background Animations */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Subtle floating orb */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.15, 1],
+                        opacity: [0.08, 0.15, 0.08],
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-primary rounded-full blur-[150px]"
+                />
+
+                {/* Decorative corner elements */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="absolute top-10 left-10 w-16 h-16 border-l border-t border-primary/10 rounded-tl-lg"
+                />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="absolute bottom-10 right-10 w-16 h-16 border-r border-b border-primary/10 rounded-br-lg"
+                />
+            </div>
+
+            <div className="container max-w-5xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
