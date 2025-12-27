@@ -10,7 +10,6 @@ import {
     Home,
     ChevronLeft,
     Menu,
-    FileText,
     Briefcase,
     Code,
     User,
