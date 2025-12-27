@@ -9,172 +9,258 @@ interface HeroProps {
     scrollToSection: (section: activeSectionType) => void;
 }
 
-// Floating particles configuration
-const generateParticles = (count: number) => {
-    return Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        duration: Math.random() * 20 + 15,
-        delay: Math.random() * 5,
-    }));
-};
+// Code snippets for floating animation
+const codeSnippets = [
+    { text: '<div>', x: '8%', y: '15%', size: 'text-xs', delay: 0 },
+    { text: 'const', x: '85%', y: '20%', size: 'text-sm', delay: 1 },
+    { text: '{ }', x: '12%', y: '75%', size: 'text-lg', delay: 0.5 },
+    { text: '=>', x: '88%', y: '65%', size: 'text-base', delay: 1.5 },
+    { text: '</>', x: '5%', y: '45%', size: 'text-sm', delay: 2 },
+    { text: 'npm', x: '92%', y: '40%', size: 'text-xs', delay: 0.8 },
+    { text: '[ ]', x: '15%', y: '85%', size: 'text-sm', delay: 1.2 },
+    { text: 'async', x: '80%', y: '80%', size: 'text-xs', delay: 2.5 },
+    { text: '( )', x: '3%', y: '60%', size: 'text-base', delay: 1.8 },
+    { text: '.tsx', x: '90%', y: '12%', size: 'text-xs', delay: 0.3 },
+];
 
-// Floating geometric shapes
-const floatingShapes = [
-    { type: 'circle', size: 60, x: '10%', y: '20%', duration: 25, delay: 0 },
-    { type: 'circle', size: 40, x: '85%', y: '15%', duration: 20, delay: 2 },
-    { type: 'circle', size: 80, x: '75%', y: '70%', duration: 30, delay: 1 },
-    { type: 'ring', size: 100, x: '15%', y: '75%', duration: 22, delay: 3 },
-    { type: 'ring', size: 50, x: '90%', y: '45%', duration: 18, delay: 1.5 },
+// Terminal-like typing lines
+const terminalLines = [
+    'npm run dev',
+    'git commit -m "feat: add hero"',
+    'Building...',
+    '✓ Ready',
+];
+
+// Floating bracket pairs
+const brackets = [
+    { open: '{', close: '}', x: '20%', y: '25%', size: 80, delay: 0 },
+    { open: '<', close: '>', x: '75%', y: '70%', size: 60, delay: 1.5 },
+    { open: '[', close: ']', x: '70%', y: '25%', size: 50, delay: 3 },
 ];
 
 export function HeroSection({ scrollToSection }: HeroProps) {
-    const particles = useMemo(() => generateParticles(30), []);
+    const binaryDots = useMemo(() =>
+        Array.from({ length: 40 }, (_, i) => ({
+            id: i,
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+            char: Math.random() > 0.5 ? '1' : '0',
+            duration: Math.random() * 15 + 10,
+            delay: Math.random() * 5,
+        })), []
+    );
 
     return (
         <section id="home" className="min-h-screen px-4 md:px-6 lg:px-8 flex items-center justify-center pt-20 relative overflow-hidden">
-            {/* === BACKGROUND ANIMATIONS === */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* === DEVELOPER-THEMED BACKGROUND === */}
+            <div className="absolute inset-0 z-0 pointer-events-none select-none">
 
-                {/* Animated Gradient Orbs */}
+                {/* Gradient Orbs */}
                 <motion.div
                     animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.15, 0.3, 0.15],
-                        x: [0, 30, 0],
-                        y: [0, -20, 0],
+                        scale: [1, 1.2, 1],
+                        opacity: [0.1, 0.2, 0.1],
                     }}
                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"
                 />
                 <motion.div
                     animate={{
-                        scale: [1.2, 0.9, 1.2],
-                        opacity: [0.1, 0.25, 0.1],
-                        x: [0, -40, 0],
-                        y: [0, 30, 0],
-                    }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-primary/70 rounded-full blur-[140px]"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
+                        scale: [1.1, 0.9, 1.1],
                         opacity: [0.08, 0.18, 0.08],
                     }}
-                    transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/50 rounded-full blur-[180px]"
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-primary/60 rounded-full blur-[130px]"
                 />
 
-                {/* Subtle Grid Pattern */}
+                {/* Code Grid Pattern */}
                 <div
                     className="absolute inset-0 opacity-[0.03]"
                     style={{
                         backgroundImage: `
-                            linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)
+                            linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+                            linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
                         `,
-                        backgroundSize: '80px 80px',
+                        backgroundSize: '60px 60px',
                     }}
                 />
 
-                {/* Scanning Line Effect */}
-                <motion.div
-                    animate={{
-                        y: ['-100%', '200%'],
-                    }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "linear",
-                        repeatDelay: 3,
-                    }}
-                    className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-                    style={{
-                        boxShadow: '0 0 30px 10px hsl(var(--primary) / 0.1)',
-                    }}
-                />
-
-                {/* Floating Particles */}
-                {particles.map((particle) => (
-                    <motion.div
-                        key={particle.id}
-                        className="absolute rounded-full bg-primary/20"
-                        style={{
-                            left: `${particle.x}%`,
-                            top: `${particle.y}%`,
-                            width: particle.size,
-                            height: particle.size,
-                        }}
-                        animate={{
-                            y: [0, -30, 0],
-                            x: [0, Math.random() * 20 - 10, 0],
-                            opacity: [0.2, 0.5, 0.2],
-                            scale: [1, 1.2, 1],
-                        }}
-                        transition={{
-                            duration: particle.duration,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: particle.delay,
-                        }}
-                    />
-                ))}
-
-                {/* Floating Geometric Shapes */}
-                {floatingShapes.map((shape, index) => (
+                {/* Floating Code Snippets */}
+                {codeSnippets.map((snippet, index) => (
                     <motion.div
                         key={index}
-                        className={`absolute ${shape.type === 'circle'
-                            ? 'bg-primary/5'
-                            : 'border border-primary/10 bg-transparent'
-                            } rounded-full`}
-                        style={{
-                            left: shape.x,
-                            top: shape.y,
-                            width: shape.size,
-                            height: shape.size,
-                        }}
+                        className={`absolute font-mono ${snippet.size} text-primary/20 font-medium`}
+                        style={{ left: snippet.x, top: snippet.y }}
                         animate={{
-                            y: [0, -20, 0],
-                            x: [0, 10, 0],
-                            rotate: [0, 360],
-                            scale: [1, 1.1, 1],
+                            y: [0, -15, 0],
+                            opacity: [0.15, 0.35, 0.15],
                         }}
                         transition={{
-                            duration: shape.duration,
+                            duration: 6,
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: shape.delay,
+                            delay: snippet.delay,
                         }}
-                    />
+                    >
+                        {snippet.text}
+                    </motion.div>
                 ))}
 
-                {/* Corner Accent Lines */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="absolute top-20 left-10 w-20 h-20 border-l-2 border-t-2 border-primary/20 rounded-tl-lg"
-                />
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.7 }}
-                    className="absolute bottom-20 right-10 w-20 h-20 border-r-2 border-b-2 border-primary/20 rounded-br-lg"
-                />
+                {/* Animated Brackets */}
+                {brackets.map((bracket, index) => (
+                    <div
+                        key={index}
+                        className="absolute hidden md:block"
+                        style={{ left: bracket.x, top: bracket.y }}
+                    >
+                        <motion.div
+                            className="relative font-mono text-primary/10 font-light"
+                            style={{ fontSize: bracket.size }}
+                            animate={{
+                                scale: [1, 1.05, 1],
+                                opacity: [0.08, 0.15, 0.08],
+                            }}
+                            transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: bracket.delay,
+                            }}
+                        >
+                            <span>{bracket.open}</span>
+                            <motion.span
+                                className="inline-block mx-2"
+                                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                                transition={{ duration: 1.5, repeat: Infinity, delay: bracket.delay }}
+                            >
+                                _
+                            </motion.span>
+                            <span>{bracket.close}</span>
+                        </motion.div>
+                    </div>
+                ))}
 
-                {/* Radial Gradient Overlay */}
+                {/* Binary/Code Rain - subtle floating characters */}
+                {binaryDots.map((dot) => (
+                    <motion.div
+                        key={dot.id}
+                        className="absolute font-mono text-[10px] text-primary/15"
+                        style={{ left: `${dot.x}%`, top: `${dot.y}%` }}
+                        animate={{
+                            y: [0, -30, 0],
+                            opacity: [0.1, 0.3, 0.1],
+                        }}
+                        transition={{
+                            duration: dot.duration,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: dot.delay,
+                        }}
+                    >
+                        {dot.char}
+                    </motion.div>
+                ))}
+
+                {/* Terminal Window - Left Side */}
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="absolute left-[5%] top-[20%] hidden lg:block"
+                >
+                    <div className="w-64 rounded-lg border border-primary/10 bg-background/50 backdrop-blur-sm overflow-hidden opacity-40">
+                        {/* Terminal Header */}
+                        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-primary/10 bg-primary/5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                            <span className="ml-2 text-[10px] text-muted-foreground font-mono">terminal</span>
+                        </div>
+                        {/* Terminal Content */}
+                        <div className="p-3 space-y-1.5">
+                            {terminalLines.map((line, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 1 + idx * 0.8 }}
+                                    className="font-mono text-[11px] text-primary/60"
+                                >
+                                    <span className="text-green-500/60">$</span> {line}
+                                </motion.div>
+                            ))}
+                            <motion.span
+                                animate={{ opacity: [0, 1, 0] }}
+                                transition={{ duration: 1, repeat: Infinity }}
+                                className="inline-block w-2 h-3 bg-primary/40"
+                            />
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Code Editor Window - Right Side */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="absolute right-[5%] top-[25%] hidden lg:block"
+                >
+                    <div className="w-72 rounded-lg border border-primary/10 bg-background/50 backdrop-blur-sm overflow-hidden opacity-40">
+                        {/* Editor Header */}
+                        <div className="flex items-center justify-between px-3 py-2 border-b border-primary/10 bg-primary/5">
+                            <div className="flex items-center gap-1.5">
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground font-mono">App.tsx</span>
+                        </div>
+                        {/* Editor Content */}
+                        <div className="p-3 font-mono text-[11px] space-y-1">
+                            <div><span className="text-purple-400/60">const</span> <span className="text-blue-400/60">App</span> = () =&gt; {'{'}</div>
+                            <div className="pl-4"><span className="text-purple-400/60">return</span> (</div>
+                            <div className="pl-8"><span className="text-primary/50">&lt;Hero /&gt;</span></div>
+                            <div className="pl-4">)</div>
+                            <div>{'}'}</div>
+                            <motion.div
+                                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                                className="text-primary/60"
+                            >
+                                |
+                            </motion.div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Corner Decorations */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.3 }}
+                    className="absolute top-20 left-8 font-mono text-primary/10 text-sm hidden md:block"
+                >
+                    {'<html>'}
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="absolute bottom-20 right-8 font-mono text-primary/10 text-sm hidden md:block"
+                >
+                    {'</html>'}
+                </motion.div>
+
+                {/* Radial Gradient Overlay - keeps center clear */}
                 <div
                     className="absolute inset-0"
                     style={{
-                        background: 'radial-gradient(ellipse at center, transparent 0%, hsl(var(--background)) 70%)',
+                        background: 'radial-gradient(ellipse at center, transparent 0%, hsl(var(--background)) 65%)',
                     }}
                 />
             </div>
 
+            {/* Main Content */}
             <div className="container max-w-4xl mx-auto text-center space-y-8 py-20 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -183,8 +269,8 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     className="space-y-4"
                 >
                     {/* Greeting */}
-                    <p className="text-primary font-medium tracking-wide">
-                        Hello there, I'm
+                    <p className="text-primary font-medium tracking-wide font-mono">
+                        {'>'} Hello there, I'm
                     </p>
 
                     {/* Name */}
@@ -196,7 +282,6 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto">
                         A results-driven <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
                     </p>
-
 
                     {/* CTA Buttons */}
                     <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -226,21 +311,6 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                         ))}
                     </div>
                 </motion.div>
-
-                {/* Stats - Simple Row */}
-                {/* <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8 border-t border-border/30"
-                >
-                    {stats.map((stat, i) => (
-                        <div key={i} className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-primary">{stat.value}</div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide mt-1">{stat.label}</div>
-                        </div>
-                    ))}
-                </motion.div> */}
 
                 {/* Scroll Indicator */}
                 <motion.div
