@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,43 +14,17 @@ import {
     StarOff,
     ExternalLink,
     Pencil,
-    X,
-    Globe,
-    ShoppingCart,
-    MessageCircle,
-    Gamepad2,
-    BookOpen,
-    Code2,
-    Folder,
-    Layout,
-    Database,
-    Server,
-    Smartphone,
-    Palette
+    Upload,
+    Image as ImageIcon,
+    X
 } from 'lucide-react';
-
-// Available icons for projects
-const availableIcons = [
-    { name: 'Globe', icon: Globe },
-    { name: 'ShoppingCart', icon: ShoppingCart },
-    { name: 'MessageCircle', icon: MessageCircle },
-    { name: 'Gamepad2', icon: Gamepad2 },
-    { name: 'BookOpen', icon: BookOpen },
-    { name: 'Code2', icon: Code2 },
-    { name: 'Folder', icon: Folder },
-    { name: 'Layout', icon: Layout },
-    { name: 'Database', icon: Database },
-    { name: 'Server', icon: Server },
-    { name: 'Smartphone', icon: Smartphone },
-    { name: 'Palette', icon: Palette },
-];
 
 interface Project {
     id: number;
     title: string;
     description: string;
     link: string;
-    icon: string;
+    icon: string; // URL or base64 data URL
     featured: boolean;
 }
 
@@ -59,12 +33,12 @@ export function ProjectsContent() {
     const [editingId, setEditingId] = useState<number | null>(null);
 
     const [projects, setProjects] = useState<Project[]>([
-        { id: 1, title: 'BITSA', description: 'Enterprise grade IT club management system with blogs, events, user profiles etc.', link: 'https://bitsa-ueab.vercel.app', icon: 'MessageCircle', featured: true },
-        { id: 2, title: 'Brillia', description: 'A fun app with quizzes, facts, stories, quick challenges', link: 'https://brillia-six.vercel.app', icon: 'ShoppingCart', featured: true },
-        { id: 3, title: 'Portfolio Website', description: 'Modern responsive portfolio showcasing projects and skills with dark/light theme toggle.', link: '#', icon: 'Globe', featured: false },
-        { id: 4, title: 'Task Manager', description: 'Productivity app with drag-and-drop tasks, categories, and due date reminders.', link: '#', icon: 'BookOpen', featured: false },
-        { id: 5, title: 'Quiz Game', description: 'Interactive quiz application with score tracking and multiple categories.', link: '#', icon: 'Gamepad2', featured: false },
-        { id: 6, title: 'API Backend', description: 'RESTful API with authentication, CRUD operations, and database integration.', link: '#', icon: 'Code2', featured: false },
+        { id: 1, title: 'BITSA', description: 'Enterprise grade IT club management system with blogs, events, user profiles etc.', link: 'https://bitsa-ueab.vercel.app', icon: '', featured: true },
+        { id: 2, title: 'Brillia', description: 'A fun app with quizzes, facts, stories, quick challenges', link: 'https://brillia-six.vercel.app', icon: '', featured: true },
+        { id: 3, title: 'Portfolio Website', description: 'Modern responsive portfolio showcasing projects and skills with dark/light theme toggle.', link: '#', icon: '', featured: false },
+        { id: 4, title: 'Task Manager', description: 'Productivity app with drag-and-drop tasks, categories, and due date reminders.', link: '#', icon: '', featured: false },
+        { id: 5, title: 'Quiz Game', description: 'Interactive quiz application with score tracking and multiple categories.', link: '#', icon: '', featured: false },
+        { id: 6, title: 'API Backend', description: 'RESTful API with authentication, CRUD operations, and database integration.', link: '#', icon: '', featured: false },
     ]);
 
     const [editForm, setEditForm] = useState<Project | null>(null);
@@ -109,16 +83,11 @@ export function ProjectsContent() {
             title: 'New Project',
             description: 'Project description...',
             link: '#',
-            icon: 'Folder',
+            icon: '',
             featured: false
         };
         setProjects([...projects, newProject]);
         startEdit(newProject);
-    };
-
-    const getIcon = (iconName: string) => {
-        const found = availableIcons.find(i => i.name === iconName);
-        return found ? found.icon : Folder;
     };
 
     const featuredProjects = projects.filter(p => p.featured);
@@ -180,8 +149,6 @@ export function ProjectsContent() {
                                 onSaveEdit={saveEdit}
                                 onToggleFeatured={() => toggleFeatured(project.id)}
                                 onDelete={() => deleteProject(project.id)}
-                                getIcon={getIcon}
-                                availableIcons={availableIcons}
                             />
                         ))
                     )}
@@ -215,8 +182,6 @@ export function ProjectsContent() {
                                 onSaveEdit={saveEdit}
                                 onToggleFeatured={() => toggleFeatured(project.id)}
                                 onDelete={() => deleteProject(project.id)}
-                                getIcon={getIcon}
-                                availableIcons={availableIcons}
                             />
                         ))
                     )}
@@ -236,8 +201,6 @@ interface ProjectCardProps {
     onSaveEdit: () => void;
     onToggleFeatured: () => void;
     onDelete: () => void;
-    getIcon: (name: string) => React.ComponentType<{ className?: string }>;
-    availableIcons: { name: string; icon: React.ComponentType<{ className?: string }> }[];
 }
 
 function ProjectCard({
@@ -250,10 +213,37 @@ function ProjectCard({
     onSaveEdit,
     onToggleFeatured,
     onDelete,
-    getIcon,
-    availableIcons
 }: ProjectCardProps) {
-    const Icon = getIcon(project.icon);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file && editForm) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload an image file');
+                return;
+            }
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Image size should be less than 2MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const result = event.target?.result as string;
+                setEditForm({ ...editForm, icon: result });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const removeImage = () => {
+        if (editForm) {
+            setEditForm({ ...editForm, icon: '' });
+        }
+    };
 
     if (isEditing && editForm) {
         return (
@@ -285,25 +275,54 @@ function ProjectCard({
                     />
                 </div>
 
+                {/* Image Upload */}
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Icon</label>
-                    <div className="flex flex-wrap gap-2">
-                        {availableIcons.map((iconItem) => {
-                            const IconComponent = iconItem.icon;
-                            return (
-                                <button
-                                    key={iconItem.name}
-                                    onClick={() => setEditForm({ ...editForm, icon: iconItem.name })}
-                                    className={`p-2 rounded-lg border transition-colors ${editForm.icon === iconItem.name
-                                            ? 'border-primary bg-primary/10'
-                                            : 'border-border hover:border-primary/50'
-                                        }`}
-                                    title={iconItem.name}
-                                >
-                                    <IconComponent className="h-4 w-4" />
-                                </button>
-                            );
-                        })}
+                    <label className="text-sm font-medium">Project Icon / Image</label>
+                    <div className="flex items-start gap-4">
+                        {/* Preview */}
+                        <div className="relative">
+                            {editForm.icon ? (
+                                <div className="relative">
+                                    <img
+                                        src={editForm.icon}
+                                        alt="Project icon"
+                                        className="h-20 w-20 rounded-lg object-cover border border-border"
+                                    />
+                                    <button
+                                        onClick={removeImage}
+                                        className="absolute -top-2 -right-2 h-5 w-5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center hover:bg-destructive/90"
+                                    >
+                                        <X className="h-3 w-3" />
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="h-20 w-20 rounded-lg border-2 border-dashed border-border flex items-center justify-center bg-secondary/30">
+                                    <ImageIcon className="h-8 w-8 text-muted-foreground/50" />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Upload Controls */}
+                        <div className="flex-1 space-y-2">
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="hidden"
+                            />
+                            <Button
+                                variant="outline"
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-full"
+                            >
+                                <Upload className="h-4 w-4 mr-2" />
+                                Upload Image
+                            </Button>
+                            <p className="text-xs text-muted-foreground">
+                                PNG, JPG, or SVG. Max 2MB. Recommended: 200x200px
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -321,8 +340,16 @@ function ProjectCard({
 
     return (
         <div className="flex items-center gap-4 p-4 border border-border rounded-lg hover:border-border/80">
-            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <Icon className="h-5 w-5 text-primary" />
+            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
+                {project.icon ? (
+                    <img
+                        src={project.icon}
+                        alt={project.title}
+                        className="h-full w-full object-cover"
+                    />
+                ) : (
+                    <FolderOpen className="h-5 w-5 text-primary" />
+                )}
             </div>
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
