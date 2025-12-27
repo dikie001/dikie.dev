@@ -9,6 +9,13 @@ import {
   Settings,
   Login
 } from './pages/admin';
+import {
+  SiteContent,
+  AboutContent,
+  ProjectsContent,
+  SkillsContent,
+  ExperienceContent
+} from './pages/admin/content';
 
 const App = () => {
   return (
@@ -22,10 +29,22 @@ const App = () => {
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
+          {/* Overview */}
           <Route index element={<Dashboard />} />
-          <Route path="visitors" element={<Visitors />} />
-          <Route path="messages" element={<Messages />} />
           <Route path="analytics" element={<Analytics />} />
+
+          {/* Content Management */}
+          <Route path="content/site" element={<SiteContent />} />
+          <Route path="content/about" element={<AboutContent />} />
+          <Route path="content/projects" element={<ProjectsContent />} />
+          <Route path="content/skills" element={<SkillsContent />} />
+          <Route path="content/experience" element={<ExperienceContent />} />
+
+          {/* Communication */}
+          <Route path="messages" element={<Messages />} />
+          <Route path="visitors" element={<Visitors />} />
+
+          {/* System */}
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
