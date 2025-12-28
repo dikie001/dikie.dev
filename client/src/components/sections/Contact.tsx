@@ -123,7 +123,7 @@ export function Contact() {
                         </div>
 
                         {/* Contact Form */}
-                        <Card className="border-border">
+                        <Card className="border-primary/15 hover:border-primary/50">
                             <CardContent className="p-8">
                                 <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
                                 <form className="space-y-5" onSubmit={handleSubmit}>
