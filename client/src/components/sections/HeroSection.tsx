@@ -31,7 +31,7 @@ const terminalLines = [
     { text: 'pnpm install', delay: 0.9 },
     { text: 'pnpm build', delay: 1.7 },
     { text: 'pnpm deploy', delay: 2.6 },
-    { text: '✓ Build passed · Production ready', delay: 3.4 },
+    { text: '✓ Build promoted · Production ready', delay: 3.4 },
 ];
 
 export function HeroSection({ scrollToSection }: HeroProps) {
