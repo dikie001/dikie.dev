@@ -25,13 +25,13 @@ const codeSnippets = [
     { text: 'let', x: '91%', y: '62%', delay: 1.1 },
 ];
 
-// Terminal commands
+// Terminal simulation
 const terminalLines = [
-    { text: 'git commit -m "feat: add hero"', delay: 0.5 },
-    { text: 'pnpm build', delay: 1.4 },
-    { text: 'pnpm run dev', delay: 1.8 },
-    { text: 'building...', delay: 2.5 },
-    { text: '✓ Ready', delay: 3.5 },
+    { text: 'git commit -m "feat: add hero section"', delay: 0.4 },
+    { text: 'pnpm install', delay: 0.9 },
+    { text: 'pnpm build', delay: 1.7 },
+    { text: 'pnpm deploy', delay: 2.6 },
+    { text: '✓ Build passed · Production ready', delay: 3.4 },
 ];
 
 export function HeroSection({ scrollToSection }: HeroProps) {
@@ -237,7 +237,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
 
                     {/* Role */}
                     <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                       A Results-oriented  <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
+                        A Results-oriented  <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
                     </p>
 
                     {/* CTA Buttons */}

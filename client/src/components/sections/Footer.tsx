@@ -43,7 +43,7 @@ export function Footer() {
                     {/* Quick Links */}
                     <div className="space-y-4">
                         <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Navigation</h4>
-                        <nav className="flex flex-col gap-2">
+                        <nav className="flex flex-col lg:grid lg:grid-cols-2 gap-2">
                             {navLinks.map((link) => (
                                 <a
                                     key={link}
