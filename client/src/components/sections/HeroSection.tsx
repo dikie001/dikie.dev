@@ -237,7 +237,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
 
                     {/* Role */}
                     <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                        A results-driven <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
+                       A Results-oriented  <span className="text-foreground font-medium">Full Stack Developer</span> focused on delivering scalable, high-impact digital solutions.
                     </p>
 
                     {/* CTA Buttons */}
