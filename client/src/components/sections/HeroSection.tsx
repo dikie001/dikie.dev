@@ -182,7 +182,12 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                             <div><span className="text-purple-400/70">export</span> <span className="text-blue-400/70">function</span> <span className="text-yellow-400/70">Hero</span>() {'{'}</div>
                             <div className="pl-3"><span className="text-purple-400/70">return</span> (</div>
                             <div className="pl-6 text-primary/50">&lt;section&gt;</div>
-                            <div className="pl-9 text-muted-foreground/50">dikie.dev</div>
+                            <div className="pl-9 text-muted-foreground/50"><div className="pl-9 text-muted-foreground/50">
+                                &lt;h1&gt;dikie.dev&lt;/h1&gt;
+                            </div>
+                                <div className="pl-9 text-muted-foreground/40">
+                                    &lt;p&gt;Production-ready systems&lt;/p&gt;
+                                </div></div>
                             <div className="pl-6 text-primary/50">&lt;/section&gt;</div>
                             <div className="pl-3">)</div>
                             <div>{'}'}</div>
