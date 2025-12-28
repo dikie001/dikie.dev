@@ -60,7 +60,7 @@ export function Footer() {
                     <div className="space-y-4">
                         <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Contact</h4>
                         <div className="space-y-2 text-muted-foreground">
-                            <p>omondidickens255@gmail.com</p>
+                            <p className='hover:text-primary/50'>omondidickens255@gmail.com</p>
                             <p>Open to Remote Work</p>
                         </div>
                     </div>
