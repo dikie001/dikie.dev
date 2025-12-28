@@ -31,7 +31,7 @@ export function AboutSection() {
                         <p className="text-primary font-medium text-sm uppercase tracking-wider">About me</p>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                             Full Stack Developer <br className="hidden sm:block" />
-                            <span className="text-muted-foreground">Focused on Impact</span>
+                            <span className="text-muted-foreground">Turning Ideas into Production Value</span>
                         </h2>
                     </div>
 
