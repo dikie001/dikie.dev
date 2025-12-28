@@ -48,7 +48,7 @@ export function Footer() {
                                 <a
                                     key={link}
                                     href={`#${link.toLowerCase()}`}
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="text-muted-foreground hover:text-primary/50"
                                 >
                                     {link}
                                 </a>
