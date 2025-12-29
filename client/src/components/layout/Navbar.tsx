@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export type activeSectionType = 'Home' | 'About' | 'Projects' | 'Skills' | 'Experience' | 'Contact';
 
@@ -14,6 +16,13 @@ interface NavbarProps {
 const navigation: activeSectionType[] = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'];
 
 export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSection }: NavbarProps) {
+    const location = useLocation()
+    const [aciveSection, setActiveSection]=useState<activeSectionType[]>('Home')
+
+    // Get the current active section for hover actions
+  useEffect(()=>{
+    
+  },[location])
     return (
         <motion.nav
             initial={{ y: -100 }}
@@ -29,7 +38,7 @@ export function Navbar({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
                         className="flex items-center gap-2.5 cursor-pointer group"
                         onClick={() => scrollToSection('Home')}
                     >
-                        <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/70 shadow-md shadow-primary/30">
+                        <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/70 shadow-md shadow-primary/30">
                             <Sparkles className="h-5 w-5 text-primary-foreground" />
                         </div>
                         <span className="text-lg font-bold tracking-tight">
