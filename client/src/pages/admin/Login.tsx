@@ -1,9 +1,9 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { ArrowLeft, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 
 export function Login() {
     const navigate = useNavigate();
@@ -37,10 +37,10 @@ export function Login() {
                     Back to site
                 </Button>
 
-                <Card>
+                <Card className='border-primary/50 shadow hover:border-primary-70'>
                     <CardHeader className="text-center">
                         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                            <Lock className="h-8 w-8 text-primary" />
+                            <ShieldCheck className="h-8 w-8 text-primary" />
                         </div>
                         <CardTitle className="text-2xl">Admin Login</CardTitle>
                         <p className="text-muted-foreground text-sm">
