@@ -40,7 +40,7 @@ const navSections: NavSection[] = [
         ]
     },
     {
-        title: 'Content',
+        title: 'Edit Content',
         items: [
             { label: 'Site Info', icon: Globe, href: '/admin/content/site' },
             { label: 'About', icon: User, href: '/admin/content/about' },
