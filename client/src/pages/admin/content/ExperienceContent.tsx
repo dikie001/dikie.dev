@@ -118,11 +118,11 @@ export function ExperienceContent() {
     }
   };
 
-  const toggleCurrent = (id: number) => {
-    setExperiences(
-      experiences.map((e) => (e.id === id ? { ...e, current: !e.current } : e))
-    );
-  };
+  // const toggleCurrent = (id: number) => {
+  //   setExperiences(
+  //     experiences.map((e) => (e.id === id ? { ...e, current: !e.current } : e))
+  //   );
+  // };
 
   const addAchievement = () => {
     if (editForm) {
@@ -186,8 +186,8 @@ export function ExperienceContent() {
 
       {/* Experience Timeline */}
       <div className="space-y-4">
-        {experiences.map((exp, index) => (
-          <Card key={exp.id} className={exp.current ? "border-primary/50" : ""}>
+        {experiences.map((exp) => (
+          <Card key={exp.id} className={`${exp.current ? "border-primary/70 hover:border-primary/80" : ""} hover:border-primary/50 `}>
             {editingId === exp.id && editForm ? (
               // Edit Mode
               <CardContent className="pt-6 space-y-4">

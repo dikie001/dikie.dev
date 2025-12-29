@@ -123,7 +123,7 @@ export function ProjectsContent() {
             </div>
 
             {/* Featured Projects */}
-            <Card>
+            <Card className='hover:border-primary/50'>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Star className="h-5 w-5 text-yellow-500" />
@@ -156,7 +156,7 @@ export function ProjectsContent() {
             </Card>
 
             {/* Other Projects */}
-            <Card>
+            <Card className='hover:border-primary/50'>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <FolderOpen className="h-5 w-5" />
