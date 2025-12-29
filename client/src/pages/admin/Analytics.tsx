@@ -1,22 +1,21 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  ArrowDownRight,
+  ArrowUpRight,
   BarChart3,
-  TrendingUp,
-  TrendingDown,
-  Users,
-  Eye,
+  Calendar,
   Clock,
+  Eye,
   Globe,
   Monitor,
   Smartphone,
   Tablet,
-  ArrowUpRight,
-  ArrowDownRight,
-  Calendar,
+  TrendingDown,
+  TrendingUp,
+  Users,
 } from "lucide-react";
+import { useState } from "react";
 
 // Time period options
 const periods = ["7 days", "30 days", "90 days", "12 months"];
@@ -143,7 +142,7 @@ export function Analytics() {
       {/* Overview Stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {overviewStats.map((stat) => (
-          <Card key={stat.label}>
+          <Card key={stat.label} className="hover:border-primary/50">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 {stat.label}
