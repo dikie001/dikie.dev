@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import contactRoutes from './contact';
 
-const router = Router();
+const router:Router = Router();
 
 // Health check
 router.get('/health', (req, res) => {
@@ -12,3 +12,4 @@ router.get('/health', (req, res) => {
 router.use('/contact', contactRoutes);
 
 export default router;
+ 

@@ -1,9 +1,15 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-dotenv.config();
+// define path
+dotenv.config({
+  path:
+    process.env.NODE_ENV === "production"
+      ? ".env.production"
+      : ".env.development",
+});
 
 export const config = {
-    port: process.env.PORT || 5000,
-    nodeEnv: process.env.NODE_ENV || 'development',
-    corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  port: process.env.PORT || 5000,
+  nodeEnv: process.env.NODE_ENV || "development",
+  corsOrigin: process.env.CORS_ORIGIN || "http://localhost:5173",
 };

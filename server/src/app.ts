@@ -1,29 +1,34 @@
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import { config } from './config';
-import routes from './routes';
-import { errorHandler } from './middleware/errorHandler';
+import express from "express";
+import { Express } from "express";
+import cors from "cors";
+import helmet from "helmet";
+import { config } from "./config";
+import routes from "./routes";
+import { errorHandler } from "./middleware/errorHandler";
 
-const app = express();
+const app: Express = express();
 
 // Security middleware
 app.use(helmet());
 
 // CORS configuration
-app.use(cors({
+app.use(
+  cors({
     origin: config.corsOrigin,
     credentials: true,
-}));
+  })
+);
 
 // Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API routes
-app.use('/api', routes);
+app.use("/api", routes);
 
 // Error handling
 app.use(errorHandler);
+
+
 
 export default app;
