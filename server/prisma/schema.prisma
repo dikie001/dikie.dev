@@ -12,3 +12,58 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// Personal information model
+model PersonalInformation {
+  id           String   @id @default(ulid())
+  firstName    String?  @default("Dickens")
+  lastName     String?  @default("Omondi")
+  profession   String?  @default("Software engineering")
+  greetingText String?  @default("Hello there")
+  tagLine      String?
+  updatedAt    DateTime @updatedAt()
+}
+
+// Contact and Location
+model ContactAndLocation {
+  id               String  @id @default(ulid())
+  email            String? @unique() @default("omondidickens255@gmail.com")
+  workPreferece    String? @default("Open to remote work")
+  availabityStatus String? @default("Avalable for freelance work")
+}
+
+// Social links
+model SocialLinks {
+  id        String   @id @default(ulid())
+  github    String?  @default("github.com/dikie001")
+  linkedIn  String?  @default("Not provided")
+  whatsapp  String?  @default("Not provided ")
+  updatedAt DateTime @updatedAt
+}
+
+// Site metadata
+model SiteMetadata {
+  id          String  @id @default(ulid())
+  version     String?
+  lastUpdated String?
+}
+
+// About me section
+model About {
+  id           String   @id @default(cuid())
+  sectionTitle String?
+  currentFocus String?
+  availability String?
+  updatedAt    DateTime @updatedAt
+
+  bioParagraphs String?
+  technologies         Technologies[]
+}
+
+// Technologies
+model Technologies {
+  id      String  @id @default(ulid())
+  technology    String
+  about   About?  @relation(fields: [aboutId], references: [id])
+  aboutId String?
+}
