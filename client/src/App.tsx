@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './features/user/Home';
 import { AdminLayout } from './components/admin';
 import {
   Dashboard,
@@ -8,14 +8,14 @@ import {
   Analytics,
   Settings,
   Login
-} from './pages/admin';
+} from './features/admin/pages';
 import {
   SiteContent,
   AboutContent,
   ProjectsContent,
   SkillsContent,
   ExperienceContent
-} from './pages/admin/content';
+} from './features/admin/content';
 
 const App = () => {
   return (

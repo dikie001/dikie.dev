@@ -26,6 +26,7 @@ interface siteData {
   firstName: string;
   lastName: string;
   professionalTitle: string;
+  profilePic: File | null;
   greetingText: string;
   tagline: string;
   email: string;
@@ -45,6 +46,7 @@ export function SiteContent() {
     firstName: "Dickens",
     lastName: "Omondi",
     professionalTitle: "Software Engineer",
+    profilePic: null,
     greetingText: "Hello there, I'm",
     tagline:
       "A results-driven Full Stack Developer focused on delivering scalable, high-impact digital solutions.",
@@ -62,7 +64,7 @@ export function SiteContent() {
   const handleSave = () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-    // Here you would save to backend/localStorage
+    
   };
 
   const updateField = (field: string, value: string) => {
