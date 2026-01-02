@@ -123,3 +123,22 @@ model ToolSkills {
   skills  SKills? @relation(fields: [skillId], references: [id])
   skillId String
 }
+
+// EXPERIENCE
+model Experience {
+  id           String         @id @default(ulid())
+  role         String?
+  organization String?
+  period       String?
+  status       String?
+  description  String?
+  achievements Achievements[]
+}
+
+// ACHIEVEMENTS
+model Achievements {
+  id           String      @id @default(ulid())
+  title        String?
+  experience   Experience? @relation(fields: [experienceId], references: [id])
+  experienceId String
+}
