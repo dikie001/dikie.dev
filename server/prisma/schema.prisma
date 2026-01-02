@@ -13,57 +13,113 @@ datasource db {
   provider = "postgresql"
 }
 
-// Personal information model
-model PersonalInformation {
-  id           String   @id @default(ulid())
-  firstName    String?  @default("Dickens")
-  lastName     String?  @default("Omondi")
-  profession   String?  @default("Software engineering")
-  greetingText String?  @default("Hello there")
-  tagLine      String?
-  updatedAt    DateTime @updatedAt()
+// SITE DATA MODEL
+model sideData {
+  id             String   @id @default(ulid())
+  firstName      String?  @default("Dickens")
+  lastName       String?  @default("Omondi")
+  profession     String?  @default("Software engineer")
+  greetingText   String?  @default("Hello there, I'm")
+  tagline        String?
+  email          String?  @default("omondidickens255@gmail.com")
+  workPreference String?  @default("Open to Remote Work")
+  location       String?
+  availability   String?  @default("Available for Freelance Work")
+  version        String?
+  lastUpdated    String?
+  github         String?  @default("https://github.com/dikie001")
+  linkedIn       String?  @default("https://linkedin.com/in/dikie")
+  X              String?
+  whatsapp       String?
+  facebook       String?
+  updatedAt      DateTime @updatedAt
 }
 
-// Contact and Location
-model ContactAndLocation {
-  id               String  @id @default(ulid())
-  email            String? @unique() @default("omondidickens255@gmail.com")
-  workPreferece    String? @default("Open to remote work")
-  availabityStatus String? @default("Avalable for freelance work")
-}
-
-// Social links
-model SocialLinks {
-  id        String   @id @default(ulid())
-  github    String?  @default("github.com/dikie001")
-  linkedIn  String?  @default("Not provided")
-  whatsapp  String?  @default("Not provided ")
-  updatedAt DateTime @updatedAt
-}
-
-// Site metadata
-model SiteMetadata {
-  id          String  @id @default(ulid())
-  version     String?
-  lastUpdated String?
-}
-
-// About me section
+// ABOUT ME MODEL
 model AboutMe {
-  id           String   @id @default(cuid())
-  sectionTitle String?
-  currentFocus String?
-  availability String?
-  updatedAt    DateTime @updatedAt
-
-  bioParagraphs String?
-  technologies         Technologies[]
+  id                 String         @id @default(cuid())
+  sectionTitle       String?
+  currentFocus       String?
+  availabilityStatus String?
+  bioParagraphs      String?
+  technologies       Technologies[]
+  updatedAt          DateTime       @updatedAt
 }
 
-// Technologies
+// TECHNOLOGIES AND TOOLS MODEL
 model Technologies {
+  id         String   @id @default(ulid())
+  technology String
+  aboutMe    AboutMe? @relation(fields: [aboutId], references: [id])
+  aboutId    String?
+}
+
+// PROJECT MODEL
+model Project {
+  id          String       @id @default(ulid())
+  title       String?
+  url         String?
+  description String?
+  logo        String?
+  banner      String?
+  featured    Boolean
+  allProjects AllProjects? @relation(fields: [projectId], references: [id])
+  projectId   String
+}
+
+// PROJECTS ARRAY MODEL
+model AllProjects {
+  id            String    @id @default(ulid())
+  totalProjects Int
+  projects      Project[]
+}
+
+// SKILLS MODEL
+model SKills {
+  id                  String           @id @default(ulid())
+  updatedAt           DateTime         @updatedAt
+  databaseSkills      DatabaseSkills[]
+  toolSkills          ToolSkills[]
+  frontendSkills      FrontendSkills[]
+  backendSkills       backendSkills[]
+  frontendProficiency Int?
+  backendProficiency  Int?
+  toolsProficiency    Int?
+  databaseProficiency Int?
+}
+
+// FRONTEND SKILLS
+model FrontendSkills {
   id      String  @id @default(ulid())
-  technology    String
-  about   AboutMe?  @relation(fields: [aboutId], references: [id])
-  aboutId String?
+  title   String?
+  skill   String?
+  skills  SKills? @relation(fields: [skillId], references: [id])
+  skillId String
+}
+
+// BACKEND SKILLS
+model backendSkills {
+  id      String  @id @default(ulid())
+  title   String?
+  skill   String?
+  skills  SKills? @relation(fields: [skillId], references: [id])
+  skillId String
+}
+
+// DATABASE SKILLS 
+model DatabaseSkills {
+  id      String  @id @default(ulid())
+  title   String?
+  skill   String?
+  skills  SKills? @relation(fields: [skillId], references: [id])
+  skillId String
+}
+
+// TOOLS I USE
+model ToolSkills {
+  id      String  @id @default(ulid())
+  title   String?
+  skill   String?
+  skills  SKills? @relation(fields: [skillId], references: [id])
+  skillId String
 }
