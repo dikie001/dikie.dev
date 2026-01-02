@@ -136,7 +136,7 @@ export function SiteContent() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Greeting Text</label>
               <Input
-                value={siteData.greeting}
+                value={siteData.greetingText}
                 onChange={(e) => updateField("greeting", e.target.value)}
                 placeholder="e.g., Hello there, I'm"
               />
@@ -230,7 +230,7 @@ export function SiteContent() {
                 LinkedIn
               </label>
               <Input
-                value={siteData.linkedin}
+                value={siteData.linkedIn}
                 onChange={(e) => updateField("linkedin", e.target.value)}
                 placeholder="https://linkedin.com/in/username"
               />
@@ -242,7 +242,7 @@ export function SiteContent() {
                 Twitter / X
               </label>
               <Input
-                value={siteData.twitter}
+                value={siteData.X}
                 onChange={(e) => updateField("twitter", e.target.value)}
                 placeholder="https://twitter.com/username"
               />
