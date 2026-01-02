@@ -191,9 +191,17 @@ model Settings {
 
 // SITE SETTINGS
 model SiteSettings {
-  id            String   @id @default(ulid())
+  id            String         @id @default(ulid())
   title         String?
   description   String?
-  // metaKeywords  Boolean?
   trackVisitors Boolean?
+  metaKeywords  MetaKeywords[]
+}
+
+// META KEYWORDS
+model MetaKeywords {
+  id             String        @id @default(ulid())
+  word           String?
+  sitesettings   SiteSettings? @relation(fields: [siteSettingsId], references: [id])
+  siteSettingsId String?
 }
