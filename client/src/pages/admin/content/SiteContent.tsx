@@ -22,25 +22,41 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+interface siteData {
+  firstName: string;
+  lastName: string;
+  professionalTitle: string;
+  greetingText: string;
+  tagline: string;
+  email: string;
+  location: string;
+  availability: string;
+  version: string;
+  github: string;
+  linkedIn: string;
+  X: string;
+  facebook: string;
+  whatsapp: string;
+}
+
 export function SiteContent() {
   const [saved, setSaved] = useState(false);
-
-  // Mock data - would come from API/state management
-  const [siteData, setSiteData] = useState({
-    name: "Dickens Omondi",
-    firstName: "DICKENS",
-    lastName: "OMONDI",
-    title: "Full Stack Developer",
+  const [siteData, setSiteData] = useState<siteData>({
+    firstName: "Dickens",
+    lastName: "Omondi",
+    professionalTitle: "Software Engineer",
+    greetingText: "Hello there, I'm",
     tagline:
       "A results-driven Full Stack Developer focused on delivering scalable, high-impact digital solutions.",
-    greeting: "Hello there, I'm",
     email: "omondidickens255@gmail.com",
     location: "Open to Remote Work",
     availability: "Available for Freelance Work",
     version: "1.0.0",
     github: "https://github.com/dikie001",
-    linkedin: "https://linkedin.com/in/dikie",
-    twitter: "",
+    linkedIn: "https://linkedin.com/in/dikie",
+    X: "",
+    whatsapp: "",
+    facebook: "",
   });
 
   const handleSave = () => {
@@ -111,7 +127,7 @@ export function SiteContent() {
             <div className="space-y-2">
               <label className="text-sm font-medium">Professional Title</label>
               <Input
-                value={siteData.title}
+                value={siteData.professionalTitle}
                 onChange={(e) => updateField("title", e.target.value)}
                 placeholder="e.g., Full Stack Developer"
               />

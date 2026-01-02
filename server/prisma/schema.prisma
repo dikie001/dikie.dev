@@ -49,7 +49,7 @@ model SiteMetadata {
 }
 
 // About me section
-model About {
+model AboutMe {
   id           String   @id @default(cuid())
   sectionTitle String?
   currentFocus String?
@@ -64,6 +64,6 @@ model About {
 model Technologies {
   id      String  @id @default(ulid())
   technology    String
-  about   About?  @relation(fields: [aboutId], references: [id])
+  about   AboutMe?  @relation(fields: [aboutId], references: [id])
   aboutId String?
 }
