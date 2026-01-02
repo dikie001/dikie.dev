@@ -13,11 +13,12 @@ datasource db {
   provider = "postgresql"
 }
 
-// SITE DATA MODEL
-model sideData {
+//  PROFILE
+model Profile {
   id             String   @id @default(ulid())
   firstName      String?  @default("Dickens")
   lastName       String?  @default("Omondi")
+  profilePic     String?
   profession     String?  @default("Software engineer")
   greetingText   String?  @default("Hello there, I'm")
   tagline        String?
@@ -141,4 +142,58 @@ model Achievements {
   title        String?
   experience   Experience? @relation(fields: [experienceId], references: [id])
   experienceId String
+}
+
+// MESSAGES
+model Messages {
+  id         String   @id @default(ulid())
+  senderName String
+  email      String
+  subject    String
+  date       DateTime @updatedAt
+  content    String
+  read       Boolean
+}
+
+enum VisitorStatus {
+  ONLINE
+  OFFLINE
+}
+
+// VISITORS
+model Visitors {
+  id              String        @id @default(ulid())
+  visitorLocation String
+  deviceUsed      String
+  pagesVisited    Int
+  referrer        String
+  duration        String
+  time            String
+  status          VisitorStatus
+}
+
+enum Mode {
+  DARK
+  LIGHT
+  SYSTEM
+}
+
+// SETTINGS
+model Settings {
+  id                   String   @id @default(ulid())
+  TwoFAEnabled         Boolean?
+  currentPassword      String?
+  messageNotification  Boolean?
+  weeklyAnalysisReport Boolean?
+  visitorMilestones    Boolean?
+  securityAlerts       Boolean?
+}
+
+// SITE SETTINGS
+model SiteSettings {
+  id            String   @id @default(ulid())
+  title         String?
+  description   String?
+  // metaKeywords  Boolean?
+  trackVisitors Boolean?
 }
