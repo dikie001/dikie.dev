@@ -236,8 +236,8 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     </p>
 
                     {/* Name */}
-                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
-                        <span className='text-primary'>DICKENS</span> OMONDI
+                    <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tight">
+                        <span className='text-primary'>MATILDA</span> OBUSUMA
                     </h1>
 
                     {/* Role */}
