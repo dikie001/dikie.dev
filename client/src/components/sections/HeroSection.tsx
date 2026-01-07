@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 interface HeroProps {
     scrollToSection: (section: activeSectionType) => void;
 }
-
+// KOES = VIZURI
 // Code snippets for floating animation
 const codeSnippets = [
     { text: '<div>', x: '5%', y: '12%', delay: 0 },
@@ -16,7 +16,7 @@ const codeSnippets = [
     { text: '{ }', x: '8%', y: '80%', delay: 0.5 },
     { text: '=>', x: '92%', y: '75%', delay: 1.5 },
     { text: '</>', x: '3%', y: '50%', delay: 2 },
-    { text: 'npm', x: '94%', y: '50%', delay: 0.8 },
+    { text: 'pnpm', x: '94%', y: '50%', delay: 0.8 },
     { text: 'git', x: '90%', y: '88%', delay: 1.2 },
     { text: 'async', x: '6%', y: '90%', delay: 2.5 },
     { text: '( )', x: '4%', y: '30%', delay: 1.8 },
@@ -31,7 +31,7 @@ const terminalLines = [
     { text: 'pnpm install', delay: 0.9 },
     { text: 'pnpm build', delay: 1.7 },
     { text: 'pnpm deploy', delay: 2.6 },
-    { text: '✓ Build promoted · Production ready', delay: 3.4 },
+    { text: '✓ Build promoted. Welcome Home!', delay: 3.4 },
 ];
 
 export function HeroSection({ scrollToSection }: HeroProps) {
@@ -58,7 +58,7 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                         opacity: [0.1, 0.2, 0.1],
                     }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-0 -left-32 w-[400px] h-[400px] bg-primary rounded-full blur-[100px]"
+                    className="absolute top-0 -left-32 w-100 h-100 bg-primary rounded-full blur-[100px]"
                 />
                 <motion.div
                     animate={{
@@ -236,8 +236,8 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     </p>
 
                     {/* Name */}
-                    <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tight">
-                        <span className='text-primary'>MATILDA</span> OBUSUMA
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
+                        <span className='text-primary'>DICKENS</span> OMONDI
                     </h1>
 
                     {/* Role */}

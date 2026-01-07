@@ -155,6 +155,7 @@ model Messages {
   read       Boolean
 }
 
+// VISITOR STATUS
 enum VisitorStatus {
   ONLINE
   OFFLINE
@@ -172,6 +173,7 @@ model Visitors {
   status          VisitorStatus
 }
 
+// MODE STATUS
 enum Mode {
   DARK
   LIGHT
@@ -189,7 +191,7 @@ model Settings {
   securityAlerts       Boolean?
 }
 
-// SITE SETTINGS
+// SITE DETAILS 
 model SiteSettings {
   id            String         @id @default(ulid())
   title         String?
