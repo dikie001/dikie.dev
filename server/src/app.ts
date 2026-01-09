@@ -7,6 +7,7 @@ import routes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
 import morgan from "morgan";
 
+// initialize express app
 const app: Express = express();
 
 if (process.env.NODE_ENV === "production") {
