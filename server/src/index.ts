@@ -1,3 +1,5 @@
+// server entry point
+import express, { Express } from "express";
 import app from "./app";
 import { config } from "./config";
 
