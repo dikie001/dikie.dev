@@ -50,7 +50,7 @@ export function SiteContent() {
     profilePic: null,
     greetingText: "Hello there, I'm",
     tagline:
-      "A results-driven Full Stack Developer focused on delivering scalable, high-impact digital solutions.",
+      "A results-driven Full Stack Developer vcxr2focused on delivering scalable, high-impact digital solutions.",
     email: "omondidickens255@gmail.com",
     location: "Open to Remote Work",
     availability: "Available for Freelance Work",
@@ -65,7 +65,7 @@ export function SiteContent() {
   const handleSave = () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-    api.get("/dikie");
+    api.get("/health");
   };
 
   const updateField = (field: string, value: string) => {
