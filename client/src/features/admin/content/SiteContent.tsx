@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { api } from "@/lib/axios";
 import {
   Briefcase,
   Check,
@@ -64,7 +65,7 @@ export function SiteContent() {
   const handleSave = () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-    
+    api.get("/dikie");
   };
 
   const updateField = (field: string, value: string) => {
