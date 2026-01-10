@@ -66,8 +66,8 @@ export function SiteContent() {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
     console.info("hello dikie!");
-    const dikie = await api.get("/health");
-    console.log(dikie);
+    const res = await api.get("/health");
+    console.log(res);
   };
 
   const updateField = (field: string, value: string) => {
