@@ -62,10 +62,12 @@ export function SiteContent() {
     facebook: "",
   });
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-    api.get("/health");
+    console.info("hello dikie!");
+    const dikie = await api.get("/health");
+    console.log(dikie);
   };
 
   const updateField = (field: string, value: string) => {
