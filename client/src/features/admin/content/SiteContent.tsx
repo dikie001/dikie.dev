@@ -59,7 +59,7 @@ export function SiteContent() {
     linkedIn: "https://linkedin.com/in/dikie",
     X: "",
     whatsapp: "",
-    facebook: "",
+    facebook: "facebook.com",
   });
 
   const handleSave = async () => {
