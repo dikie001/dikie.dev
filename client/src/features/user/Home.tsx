@@ -7,6 +7,7 @@ import {
   Skills,
   Projects,
   Experience,
+  Pricing,
   Contact,
   Footer
 } from '@/components/sections';
@@ -62,6 +63,7 @@ const Home = () => {
       <Projects />
       <Skills />
       <Experience />
+      <Pricing />
       <Contact />
       <Footer />
     </div>

@@ -10,6 +10,7 @@ export type activeSectionType =
   | "Projects"
   | "Skills"
   | "Experience"
+  | "Pricing"
   | "Contact";
 
 interface NavbarProps {
@@ -25,6 +26,7 @@ const navigation: activeSectionType[] = [
   "Projects",
   "Skills",
   "Experience",
+  "Pricing",
 ];
 
 export function Navbar({
@@ -77,8 +79,8 @@ export function Navbar({
                     key={item}
                     onClick={() => scrollToSection(item)}
                     className={`relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full ${isActive
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     {isActive && (
