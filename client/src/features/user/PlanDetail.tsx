@@ -20,6 +20,8 @@ import {
     Settings,
     Calendar,
     Shield,
+    Eye,
+    Pencil,
 } from 'lucide-react';
 import { getPricingTierById, formatKES, formatUSD, pricingTiers } from '@/data/pricing';
 
@@ -32,6 +34,7 @@ const STEPS = [
     { id: 5, title: 'Technical', icon: Settings },
     { id: 6, title: 'Timeline', icon: Calendar },
     { id: 7, title: 'Final', icon: Shield },
+    { id: 8, title: 'Review', icon: Eye },
 ];
 
 // Checkbox group component
@@ -693,6 +696,165 @@ export default function PlanDetail() {
                                                         placeholder="Additional requirements, concerns, or questions..."
                                                         className="min-h-[100px] resize-none"
                                                     />
+                                                </div>
+                                            </>
+                                        )}
+
+                                        {/* Step 8: Review */}
+                                        {currentStep === 8 && (
+                                            <>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold">Review Your Brief</h2>
+                                                    <p className="text-sm text-muted-foreground">Please review all details before submitting</p>
+                                                </div>
+
+                                                <div className="space-y-6 max-h-[500px] overflow-y-auto pr-2">
+                                                    {/* Business Info Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Building2 className="w-4 h-4 text-primary" />
+                                                                Business Information
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(1)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="grid sm:grid-cols-2 gap-2 text-sm bg-muted/30 rounded-lg p-4">
+                                                            <div><span className="text-muted-foreground">Business:</span> {formData.businessName || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Brand:</span> {formData.brandName || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Industry:</span> {formData.industry || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Contact:</span> {formData.contactName || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Email:</span> {formData.email || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Phone:</span> {formData.phone || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Decision Maker:</span> {formData.isDecisionMaker}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Goals Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Target className="w-4 h-4 text-primary" />
+                                                                Business Objectives
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(2)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="text-sm bg-muted/30 rounded-lg p-4 space-y-2">
+                                                            <div><span className="text-muted-foreground">Primary Goal:</span> {formData.primaryGoal || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Success Metrics:</span> {formData.successMetrics.length > 0 ? formData.successMetrics.join(', ') : '—'}</div>
+                                                            <div><span className="text-muted-foreground">Target Audience:</span> {formData.targetAudience || '—'}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Scope Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Layers className="w-4 h-4 text-primary" />
+                                                                Scope & Features
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(3)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="text-sm bg-muted/30 rounded-lg p-4 space-y-2">
+                                                            <div><span className="text-muted-foreground">Site Type:</span> {formData.siteType || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Pages:</span> {formData.requiredPages.length > 0 ? formData.requiredPages.join(', ') : '—'}</div>
+                                                            <div><span className="text-muted-foreground">Features:</span> {formData.coreFeatures.length > 0 ? formData.coreFeatures.join(', ') : '—'}</div>
+                                                            <div><span className="text-muted-foreground">Integrations:</span> {formData.integrations.length > 0 ? formData.integrations.join(', ') : '—'}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Design Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Palette className="w-4 h-4 text-primary" />
+                                                                Design Direction
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(4)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="text-sm bg-muted/30 rounded-lg p-4 space-y-2">
+                                                            <div><span className="text-muted-foreground">Style:</span> {formData.designStyle || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Theme:</span> {formData.themePreference}</div>
+                                                            <div><span className="text-muted-foreground">Brand Colors:</span> {formData.brandColors || '—'}</div>
+                                                            <div><span className="text-muted-foreground">References:</span> {formData.referenceWebsites || '—'}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Technical Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Settings className="w-4 h-4 text-primary" />
+                                                                Technical Requirements
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(5)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="grid sm:grid-cols-2 gap-2 text-sm bg-muted/30 rounded-lg p-4">
+                                                            <div><span className="text-muted-foreground">Has Domain:</span> {formData.hasDomain}</div>
+                                                            <div><span className="text-muted-foreground">Domain:</span> {formData.domainName || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Has Hosting:</span> {formData.hasHosting}</div>
+                                                            <div><span className="text-muted-foreground">SEO:</span> {formData.seoLevel}</div>
+                                                            <div><span className="text-muted-foreground">Analytics:</span> {formData.needsAnalytics}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Timeline & Budget Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Calendar className="w-4 h-4 text-primary" />
+                                                                Timeline & Budget
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(6)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="grid sm:grid-cols-2 gap-2 text-sm bg-muted/30 rounded-lg p-4">
+                                                            <div><span className="text-muted-foreground">Launch Date:</span> {formData.launchDate || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Hard Deadline:</span> {formData.hardDeadline || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Budget:</span> {formData.budgetRange || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Payment:</span> {formData.paymentStructure}</div>
+                                                            <div><span className="text-muted-foreground">Maintenance:</span> {formData.needsMaintenance}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Final Details Review */}
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-between">
+                                                            <h3 className="font-medium flex items-center gap-2">
+                                                                <Shield className="w-4 h-4 text-primary" />
+                                                                Final Details
+                                                            </h3>
+                                                            <button onClick={() => setCurrentStep(7)} className="text-xs text-primary hover:underline flex items-center gap-1">
+                                                                <Pencil className="w-3 h-3" /> Edit
+                                                            </button>
+                                                        </div>
+                                                        <div className="text-sm bg-muted/30 rounded-lg p-4 space-y-2">
+                                                            <div><span className="text-muted-foreground">Content Provider:</span> {formData.contentProvider || '—'}</div>
+                                                            <div><span className="text-muted-foreground">Copywriting:</span> {formData.needsCopywriting}</div>
+                                                            <div><span className="text-muted-foreground">Privacy Policy:</span> {formData.privacyPolicy}</div>
+                                                            <div><span className="text-muted-foreground">Communication:</span> {formData.communicationChannel || '—'}</div>
+                                                            {formData.additionalNotes && (
+                                                                <div><span className="text-muted-foreground">Notes:</span> {formData.additionalNotes}</div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="pt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                                                    <p className="text-sm text-center text-muted-foreground">
+                                                        By submitting, you agree to be contacted regarding this project.
+                                                        I'll review your brief and respond within 24-48 hours.
+                                                    </p>
                                                 </div>
                                             </>
                                         )}
