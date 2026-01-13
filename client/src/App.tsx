@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './features/user/Home';
+import PlanDetail from './features/user/PlanDetail';
 import { AdminLayout } from './components/admin';
 import {
   Dashboard,
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/pricing/:planId" element={<PlanDetail />} />
 
         {/* Admin Login */}
         <Route path="/admin/login" element={<Login />} />

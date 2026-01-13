@@ -1,92 +1,9 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Check, Sparkles, Zap, Rocket } from 'lucide-react';
-
-interface PricingTier {
-    name: string;
-    description: string;
-    priceKES: number;
-    priceUSD: number;
-    features: string[];
-    highlighted?: boolean;
-    icon: React.ElementType;
-    badge?: string;
-}
-
-const pricingTiers: PricingTier[] = [
-    {
-        name: 'Starter',
-        description: 'Perfect for small businesses and personal projects',
-        priceKES: 25000,
-        priceUSD: 195,
-        icon: Zap,
-        features: [
-            'Single page responsive website',
-            'Mobile-first design',
-            'Basic SEO optimization',
-            'Contact form integration',
-            '1 round of revisions',
-            '7 days delivery',
-        ],
-    },
-    {
-        name: 'Professional',
-        description: 'Ideal for growing businesses and startups',
-        priceKES: 65000,
-        priceUSD: 499,
-        icon: Sparkles,
-        highlighted: true,
-        badge: 'Most Popular',
-        features: [
-            'Up to 5 pages website',
-            'Custom UI/UX design',
-            'Advanced SEO optimization',
-            'CMS integration',
-            'Performance optimization',
-            'Social media integration',
-            '3 rounds of revisions',
-            '14 days delivery',
-            '1 month free support',
-        ],
-    },
-    {
-        name: 'Enterprise',
-        description: 'Full-scale solutions for established businesses',
-        priceKES: 150000,
-        priceUSD: 1150,
-        icon: Rocket,
-        features: [
-            'Unlimited pages',
-            'Full-stack web application',
-            'Database design & integration',
-            'User authentication system',
-            'Admin dashboard',
-            'API development',
-            'E-commerce functionality',
-            'Unlimited revisions',
-            '30 days delivery',
-            '3 months free support',
-            'Priority communication',
-        ],
-    },
-];
-
-const formatKES = (amount: number) =>
-    new Intl.NumberFormat('en-KE', {
-        style: 'currency',
-        currency: 'KES',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-    }).format(amount);
-
-const formatUSD = (amount: number) =>
-    new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-    }).format(amount);
+import { Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { pricingTiers, formatKES, formatUSD } from '@/data/pricing';
 
 export function Pricing() {
     return (
@@ -124,7 +41,7 @@ export function Pricing() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                         {pricingTiers.map((tier, index) => (
                             <motion.div
-                                key={tier.name}
+                                key={tier.id}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -150,9 +67,9 @@ export function Pricing() {
                                     <h3 className="text-xl font-bold">{tier.name}</h3>
                                 </div>
 
-                                {/* Description */}
+                                {/* Tagline */}
                                 <p className="text-muted-foreground text-sm mb-6">
-                                    {tier.description}
+                                    {tier.tagline}
                                 </p>
 
                                 {/* Pricing */}
@@ -167,24 +84,29 @@ export function Pricing() {
                                     </p>
                                 </div>
 
-                                {/* Features */}
+                                {/* Features (show first 5) */}
                                 <ul className="space-y-3 mb-8">
-                                    {tier.features.map((feature) => (
+                                    {tier.features.slice(0, 5).map((feature) => (
                                         <li key={feature} className="flex items-start gap-3 text-sm">
                                             <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${tier.highlighted ? 'text-primary' : 'text-muted-foreground'}`} />
                                             <span className="text-muted-foreground">{feature}</span>
                                         </li>
                                     ))}
+                                    {tier.features.length > 5 && (
+                                        <li className="text-sm text-primary font-medium">
+                                            +{tier.features.length - 5} more features
+                                        </li>
+                                    )}
                                 </ul>
 
-                                {/* CTA Button */}
+                                {/* CTA Button - Links to plan detail page */}
                                 <Button
                                     className="w-full"
                                     variant={tier.highlighted ? 'default' : 'outline'}
                                     size="lg"
                                     asChild
                                 >
-                                    <a href="#contact">Get Started</a>
+                                    <Link to={`/pricing/${tier.id}`}>Get Started</Link>
                                 </Button>
                             </motion.div>
                         ))}
