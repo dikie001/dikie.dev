@@ -6,6 +6,8 @@ import {
   AboutSection,
   Skills,
   Projects,
+  Services,
+  Pricing,
   Experience,
   Contact,
   Footer
@@ -59,8 +61,10 @@ const Home = () => {
       {/* Sections */}
       <HeroSection scrollToSection={scrollToSection} />
       <AboutSection />
+      <Services />
       <Projects />
       <Skills />
+      <Pricing />
       <Experience />
       <Contact />
       <Footer />

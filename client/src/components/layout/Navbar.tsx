@@ -7,8 +7,10 @@ import { Menu, Sparkles, X, ArrowRight } from "lucide-react";
 export type activeSectionType =
   | "Home"
   | "About"
+  | "Services"
   | "Projects"
   | "Skills"
+  | "Pricing"
   | "Experience"
   | "Contact";
 
@@ -22,9 +24,9 @@ interface NavbarProps {
 const navigation: activeSectionType[] = [
   "Home",
   "About",
+  "Services",
   "Projects",
-  "Skills",
-  "Experience",
+  "Pricing",
 ];
 
 export function Navbar({
@@ -76,11 +78,10 @@ export function Navbar({
                   <button
                     key={item}
                     onClick={() => scrollToSection(item)}
-                    className={`relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full ${
-                      isActive
+                    className={`relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full ${isActive
                         ? "text-primary"
                         : "text-muted-foreground hover:text-foreground"
-                    }`}
+                      }`}
                   >
                     {isActive && (
                       <motion.div
@@ -155,9 +156,8 @@ export function Navbar({
                         scrollToSection(item);
                         setIsMenuOpen(false);
                       }}
-                      className={`text-3xl font-bold tracking-tight transition-colors ${
-                        isActive ? "text-primary" : "text-muted-foreground"
-                      }`}
+                      className={`text-3xl font-bold tracking-tight transition-colors ${isActive ? "text-primary" : "text-muted-foreground"
+                        }`}
                     >
                       {item}
                     </motion.button>
