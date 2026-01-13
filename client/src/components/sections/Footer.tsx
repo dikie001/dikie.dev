@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, Sparkles, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -12,68 +13,104 @@ export function Footer() {
     const navLinks = ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'];
 
     return (
-        <footer className="py-16 border-t border-border px-4 md:px-6 lg:px-8 bg-background">
-            <div className="container max-w-6xl mx-auto">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                    {/* Brand */}
-                    <div className="lg:col-span-2 space-y-4">
-                        <h3 className="text-2xl font-bold">
-                            <span className="text-primary">DICKENS</span> OMONDI
-                        </h3>
-                        <p className="text-muted-foreground max-w-md">
-                            Full Stack Developer passionate about building digital experiences that make a difference.
+        <footer className="relative border-t border-border/40 bg-background pt-16 pb-8 overflow-hidden">
+            {/* Ambient Background Effect */}
+            <div className="absolute inset-0 bg-primary/5 [mask-image:linear-gradient(to_bottom,transparent,black)] pointer-events-none" />
+
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+                    
+                    {/* Brand Section */}
+                    <div className="lg:col-span-5 space-y-6">
+                        <div className="flex items-center gap-2">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+                                <Sparkles className="h-4 w-4 text-primary" />
+                            </div>
+                            <span className="text-xl font-bold tracking-tight">
+                                DIKIE<span className="text-muted-foreground">.DEV</span>
+                            </span>
+                        </div>
+                        <p className="text-muted-foreground max-w-sm leading-relaxed">
+                            Crafting pixel-perfect, accessible, and performant digital experiences. 
+                            Focused on building modern web applications with cutting-edge technologies.
                         </p>
-                        {/* Social Links */}
-                        <div className="flex items-center gap-3 pt-2">
+                        
+                        <div className="flex gap-3">
                             {socialLinks.map((link) => (
-                                <a
+                                <motion.a
                                     key={link.label}
                                     href={link.href}
-                                    target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                                    target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2.5 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors"
+                                    whileHover={{ y: -3, scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="p-3 rounded-xl bg-secondary/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-colors"
                                     aria-label={link.label}
                                 >
                                     <link.icon className="h-5 w-5" />
-                                </a>
+                                </motion.a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="space-y-4">
-                        <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Navigation</h4>
-                        <nav className="flex flex-col lg:grid lg:grid-cols-2 gap-2">
+                    {/* Navigation Links */}
+                    <div className="lg:col-span-3 lg:col-start-7">
+                        <h4 className="font-semibold text-foreground mb-6">Navigation</h4>
+                        <ul className="space-y-3">
                             {navLinks.map((link) => (
-                                <a
-                                    key={link}
-                                    href={`#${link.toLowerCase()}`}
-                                    className="text-muted-foreground hover:text-primary/50"
-                                >
-                                    {link}
-                                </a>
+                                <li key={link}>
+                                    <a 
+                                        href={`#${link.toLowerCase()}`}
+                                        className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors w-fit"
+                                    >
+                                        <span className="h-px w-0 bg-primary transition-all group-hover:w-4" />
+                                        {link}
+                                    </a>
+                                </li>
                             ))}
-                        </nav>
+                        </ul>
                     </div>
 
-                    {/* Contact */}
-                    <div className="space-y-4">
-                        <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Contact</h4>
-                        <div className="space-y-2 text-muted-foreground">
-                            <p className='hover:text-primary/50'>omondidickens255@gmail.com</p>
-                            <p>Open to Remote Work</p>
+                    {/* Contact / Status */}
+                    <div className="lg:col-span-3">
+                        <h4 className="font-semibold text-foreground mb-6">Get in Touch</h4>
+                        <div className="space-y-4">
+                            <a 
+                                href="mailto:omondidickens255@gmail.com" 
+                                className="block text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                omondidickens255@gmail.com
+                            </a>
+                            
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/20 bg-green-500/10 text-green-600 dark:text-green-400 text-sm font-medium">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                </span>
+                                Open for Opportunities
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-sm text-muted-foreground text-center sm:text-left">
-                        © {currentYear} dikie.dev • All rights reserved.
+                <div className="pt-8 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-sm text-muted-foreground">
+                        © {currentYear} Dickens Omondi. All rights reserved.
                     </p>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                        Built with <Heart className="h-4 w-4 text-primary fill-primary" /> using React & TypeScript
-                    </p>
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                        <span className="flex items-center gap-1.5">
+                            Made with <Heart className="h-3.5 w-3.5 text-red-500 fill-red-500" /> in Kenya
+                        </span>
+                        <a 
+                            href="https://github.com/dikie001/portfolio" 
+                            target="_blank" 
+                            rel="noreferrer"
+                            className="flex items-center gap-1 hover:text-foreground transition-colors"
+                        >
+                            Source Code <ArrowUpRight className="h-3 w-3" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
