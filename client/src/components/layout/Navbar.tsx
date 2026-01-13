@@ -7,10 +7,8 @@ import { Menu, Sparkles, X, ArrowRight } from "lucide-react";
 export type activeSectionType =
   | "Home"
   | "About"
-  | "Services"
   | "Projects"
   | "Skills"
-  | "Pricing"
   | "Experience"
   | "Contact";
 
@@ -24,9 +22,9 @@ interface NavbarProps {
 const navigation: activeSectionType[] = [
   "Home",
   "About",
-  "Services",
   "Projects",
-  "Pricing",
+  "Skills",
+  "Experience",
 ];
 
 export function Navbar({

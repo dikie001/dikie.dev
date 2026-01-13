@@ -2,8 +2,6 @@ export { HeroSection } from './HeroSection';
 export { AboutSection } from './AboutSection';
 export { Skills } from './Skills';
 export { Projects } from './Projects';
-export { Services } from './Services';
-export { Pricing } from './Pricing';
 export { Experience } from './Experience';
 export { Contact } from './Contact';
 export { Footer } from './Footer';
