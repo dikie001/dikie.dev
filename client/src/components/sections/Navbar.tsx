@@ -19,17 +19,25 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
 
+    // Handle Scroll & Active Section
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            setIsScrolled(window.scrollY > 20);
 
-            // Update active section based on scroll position
+            // Logic to determine active section
             const sections = navLinks.map((link) => link.href.slice(1));
-            for (const section of sections.reverse()) {
+            // Default to home if near top
+            if (window.scrollY < 100) {
+                setActiveSection("home");
+                return;
+            }
+            
+            for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    if (rect.top <= 150) {
+                    // Check if section is roughly in the middle of viewport
+                    if (rect.top >= 0 && rect.top <= 300) {
                         setActiveSection(section);
                         break;
                     }
@@ -41,12 +49,29 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isMobileMenuOpen]);
+
     const scrollToSection = (href: string) => {
+        setIsMobileMenuOpen(false);
         const element = document.querySelector(href);
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            // Offset for the fixed header
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
         }
-        setIsMobileMenuOpen(false);
     };
 
     return (
@@ -54,93 +79,88 @@ export function Navbar() {
             <motion.header
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "py-3 bg-background/80 backdrop-blur-md border-b"
-                    : "py-5 bg-transparent"
-                    }`}
+                transition={{ duration: 0.5 }}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                    isScrolled
+                        ? "bg-background/80 backdrop-blur-xl border-b shadow-sm py-3"
+                        : "bg-transparent py-5"
+                }`}
             >
-                <div className="container flex items-center justify-between">
+                <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                     {/* Logo */}
-                    <motion.a
+                    <a
                         href="#home"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection("#home");
-                        }}
-                        className="flex items-center gap-2 text-xl font-bold font-[Playfair_Display]"
-                        whileHover={{ scale: 1.02 }}
+                        onClick={(e) => { e.preventDefault(); scrollToSection("#home"); }}
+                        className="flex items-center gap-2 group"
                     >
-                        <Sparkles className="w-6 h-6 text-primary" />
-                        <span className="text-primary">Portfolio</span>
-                    </motion.a>
+                        <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
+                            <Sparkles className="w-5 h-5 text-primary" />
+                        </div>
+                        <span className="text-xl font-bold tracking-tight">Portfolio.</span>
+                    </a>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-1">
+                    <nav className="hidden lg:flex items-center gap-1 bg-secondary/30 p-1 rounded-full border border-border/50 backdrop-blur-sm">
                         {navLinks.map((link) => (
-                            <motion.a
+                            <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     scrollToSection(link.href);
                                 }}
-                                className={`relative px-4 py-2 text-sm font-medium transition-colors ${activeSection === link.href.slice(1)
-                                    ? "text-primary"
-                                    : "text-muted-foreground hover:text-foreground"
-                                    }`}
-                                whileHover={{ y: -2 }}
+                                className={`relative px-4 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                                    activeSection === link.href.slice(1)
+                                        ? "text-primary-foreground"
+                                        : "text-muted-foreground hover:text-foreground"
+                                }`}
                             >
-                                {link.name}
                                 {activeSection === link.href.slice(1) && (
-                                    <motion.div
-                                        layoutId="activeSection"
-                                        className="absolute inset-x-2 -bottom-px h-0.5 bg-gradient-to-r from-primary to-primary/80"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    <motion.span
+                                        layoutId="active-pill"
+                                        className="absolute inset-0 bg-primary rounded-full -z-10 shadow-sm"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     />
                                 )}
-                            </motion.a>
+                                {link.name}
+                            </a>
                         ))}
                     </nav>
 
-                    {/* Desktop CTA */}
-                    <div className="hidden lg:flex items-center gap-2">
+                    {/* Desktop CTA & Theme */}
+                    <div className="hidden lg:flex items-center gap-3">
                         <ThemeToggle />
-                        <Button
-                            size="sm"
-                            onClick={() => scrollToSection("#contact")}
-                        >
+                        <Button onClick={() => scrollToSection("#contact")} className="rounded-full px-6">
                             Let's Talk
                         </Button>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="lg:hidden"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? (
-                            <X className="w-5 h-5" />
-                        ) : (
-                            <Menu className="w-5 h-5" />
-                        )}
-                    </Button>
+                    {/* Mobile Menu Toggle */}
+                    <div className="flex lg:hidden items-center gap-2">
+                        <ThemeToggle />
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </Button>
+                    </div>
                 </div>
             </motion.header>
 
-            {/* Mobile Menu */}
+            {/* Mobile Full Screen Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0, y: "-100%" }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-x-0 top-[60px] z-40 bg-background/95 backdrop-blur-md border-b lg:hidden"
+                        exit={{ opacity: 0, y: "-100%" }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="fixed inset-0 z-40 bg-background lg:hidden flex flex-col pt-24 px-6"
                     >
-                        <nav className="container py-6 flex flex-col gap-2">
+                        <nav className="flex flex-col gap-6 items-center justify-center flex-1">
                             {navLinks.map((link, index) => (
                                 <motion.a
                                     key={link.name}
@@ -149,23 +169,30 @@ export function Navbar() {
                                         e.preventDefault();
                                         scrollToSection(link.href);
                                     }}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.05 }}
-                                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeSection === link.href.slice(1)
-                                        ? "bg-primary/10 text-primary"
-                                        : "text-muted-foreground hover:bg-muted"
-                                        }`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 + index * 0.05 }}
+                                    className={`text-3xl font-bold tracking-tight ${
+                                        activeSection === link.href.slice(1)
+                                            ? "text-primary"
+                                            : "text-muted-foreground"
+                                    }`}
                                 >
                                     {link.name}
                                 </motion.a>
                             ))}
-                            <div className="pt-4 mt-2 border-t">
-                                <Button className="w-full" onClick={() => scrollToSection("#contact")}>
-                                    Let's Talk
-                                </Button>
-                            </div>
                         </nav>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="pb-10 w-full"
+                        >
+                            <Button className="w-full text-lg py-6 rounded-xl" onClick={() => scrollToSection("#contact")}>
+                                Let's Talk
+                            </Button>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
