@@ -89,18 +89,31 @@ export function HeroSection({ scrollToSection }: HeroProps) {
                     </div>
                 </motion.div>
 
-                {/* Scroll Indicator */}
+                    {/* Scroll Indicator */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="pt-4 sm:pt-6"
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2"
                 >
                     <button
                         onClick={() => scrollToSection('About')}
-                        className="animate-bounce  text-muted-foreground hover:text-primary transition-colors"
+                        className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+                        aria-label="Scroll to about section"
                     >
-                        <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6" />
+                        <span className="text-xs uppercase tracking-widest">Scroll</span>
+                        <div className="w-px h-12 bg-border relative overflow-hidden">
+                            <motion.div
+                                className="w-full h-8 bg-primary"
+                                animate={{ y: [-32, 48] }}
+                                transition={{ 
+                                    duration: 1.5, 
+                                    repeat: Infinity, 
+                                    ease: "easeInOut" 
+                                }}
+                            />
+                        </div>
+                        <ArrowDown className="h-4 w-4" />
                     </button>
                 </motion.div>
             </div>
