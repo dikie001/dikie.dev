@@ -37,7 +37,7 @@ export function Footer() {
                 <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
             </div>
 
-            <motion.div 
+            <motion.div
                 className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
                 variants={containerVariants}
                 initial="hidden"
@@ -45,7 +45,7 @@ export function Footer() {
                 viewport={{ once: true, margin: "-100px" }}
             >
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-16">
-                    
+
                     {/* Brand Identity */}
                     <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ export function Footer() {
                         <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
                             Crafting pixel-perfect, accessible, and performant digital experiences with modern web technologies.
                         </p>
-                        
+
                         <div className="flex gap-3 pt-2">
                             {SOCIAL_LINKS.map((link) => (
                                 <a
@@ -87,7 +87,7 @@ export function Footer() {
                         <ul className="space-y-3">
                             {NAV_LINKS.map((link) => (
                                 <li key={link}>
-                                    <a 
+                                    <a
                                         href={`#${link.toLowerCase()}`}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                                     >
@@ -103,8 +103,8 @@ export function Footer() {
                     <motion.div variants={itemVariants} className="lg:col-span-4 space-y-6">
                         <h4 className="font-semibold text-foreground mb-6 text-sm">GET IN TOUCH</h4>
                         <div className="space-y-4">
-                            <a 
-                                href="mailto:omondidickens255@gmail.com" 
+                            <a
+                                href="mailto:omondidickens255@gmail.com"
                                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors group"
                             >
                                 <Mail className="h-4 w-4" />
@@ -112,7 +112,7 @@ export function Footer() {
                                     omondidickens255@gmail.com
                                 </span>
                             </a>
-                            
+
                             <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                 <MapPin className="h-4 w-4" />
                                 <span>Nairobi, Kenya</span>
@@ -120,8 +120,8 @@ export function Footer() {
 
                             <div className="inline-flex items-center rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-medium text-green-500">
                                 <span className="relative flex h-2 w-2 mr-2">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                 </span>
                                 Open for Opportunities
                             </div>
@@ -132,19 +132,19 @@ export function Footer() {
                 <div className="h-px w-full bg-border" />
 
                 {/* Footer Bottom */}
-                <motion.div 
+                <motion.div
                     variants={itemVariants}
                     className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground"
                 >
                     <p>© {currentYear} Dickens Omondi. All rights reserved.</p>
-                    
+
                     <div className="flex items-center gap-6">
                         <span className="flex items-center gap-1">
                             Made with <Heart className="h-3 w-3 text-red-500 fill-red-500 mx-1" /> in Kenya
                         </span>
-                        <a 
-                            href="https://github.com/dikie001/portfolio" 
-                            target="_blank" 
+                        <a
+                            href="https://github.com/dikie001/portfolio"
+                            target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-1 hover:text-foreground transition-colors"
                         >
