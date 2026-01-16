@@ -43,7 +43,7 @@ export function Skills() {
                     <div className="text-center space-y-3">
                         <p className="text-primary font-medium text-sm uppercase tracking-wider">Skills</p>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                            What I Work With
+                            What I Work With.
                         </h2>
                         <p className="text-muted-foreground max-w-xl mx-auto">
                             Technologies and tools I use to bring ideas to life.
